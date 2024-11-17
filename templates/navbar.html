@@ -1,0 +1,70 @@
+    {% load static %}
+      <!-- Navbar-->
+      <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-scroll-header>
+        <meta charset="utf-8">
+    <title>Finder | Real Estate | 404 Not Found</title>
+        <div class="container"><a class="navbar-brand me-3 me-xl-4" href="{% url 'home' %}"><img class="d-block" src="{% static 'img/logo/logo-dark.svg' %}" width="116" alt="Finder"></a>
+          <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="dropdown d-none d-lg-block order-lg-3 my-n2 me-3"><a class="d-block py-2" href="{% url 'account_info' %}"><img class="rounded-circle" src="{% static 'img/avatars/30.jpg' %}" width="40" alt="Annette Black"></a>
+            <div class="dropdown-menu dropdown-menu-end">
+              <div class="d-flex align-items-start border-bottom px-3 py-1 mb-2" style="width: 16rem;"><img class="rounded-circle" src="{% static 'img/avatars/03.jpg' %}" width="48" alt="Annette Black">
+                <div class="ps-2">
+                  <h6 class="fs-base mb-0">Annette Black</h6><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+                  <div class="fs-xs py-2">(302) 555-0107<br>annette_black@email.com</div>
+                </div>
+              </div><a class="dropdown-item" href="{% url 'account_info' %}"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="{% url 'account_security' %}"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a><a class="dropdown-item" href="{% url 'account_properties' %}"><i class="fi-home opacity-60 me-2"></i>My Properties</a><a class="dropdown-item" href="{% url 'account_wishlist' %}"><i class="fi-heart opacity-60 me-2"></i>Wishlist</a><a class="dropdown-item" href="{% url 'account_reviews' %}"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="dropdown-item" href="{% url 'account_notification' %}"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'help_center' %}">Help</a><a class="dropdown-item" href="{% url 'signin' %}">Sign Out</a>
+            </div>
+          </div><a class="btn btn-primary btn-sm ms-2 order-lg-3" href="{% url 'add_property' %}"><i class="fi-plus me-2"></i>Add<span class='d-none d-sm-inline'> property</span></a>
+          <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
+              <!-- Demos switcher-->
+            
+              <!-- Menu items-->
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'home' %}">Home v.1</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalog</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'catalog_rent' %}">Property for Rent</a></li>
+                  <li><a class="dropdown-item" href="{% url 'catalog_sale' %}">Property for Sale</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vendor</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'add_property' %}">Add Property</a></li>
+                  <li><a class="dropdown-item" href="{% url 'property_promotion' %}">Property Promotion</a></li>
+                  <li><a class="dropdown-item" href="{% url 'vendor_properties' %}">Vendor Page: Properties</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'about' %}">About</a></li>
+                  <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'blog' %}">Blog Grid</a></li>
+                      <li><a class="dropdown-item" href="{% url 'blog_single' %}">Single Post</a></li>
+                    </ul>
+                  </li>
+                  <li><a class="dropdown-item" href="{% url 'contacts' %}">Contacts</a></li>
+                  <li><a class="dropdown-item" href="{% url 'help_center' %}">Help Center</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown d-lg-none"><a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="rounded-circle me-2" src="{% static 'img/avatars/30.jpg' %}" width="30" alt="Annette Black">Annette Black</a>
+                <div class="dropdown-menu">
+                  <div class="ps-3"><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+                    <div class="fs-xs py-2">(302) 555-0107<br>annette_black@email.com</div>
+                  </div><a class="dropdown-item" href="{% url 'account_info' %}"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="real-estate-account-security.html"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a><a class="dropdown-item" href="real-estate-account-properties.html"><i class="fi-home opacity-60 me-2"></i>My Properties</a><a class="dropdown-item" href="real-estate-account-wishlist.html"><i class="fi-heart opacity-60 me-2"></i>Wishlist</a><a class="dropdown-item" href="real-estate-account-reviews.html"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="dropdown-item" href="real-estate-account-notifications.html"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'help_center' %}">Help</a><a class="dropdown-item" href="{% url 'signin' %}">Sign Out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      {% block content %}
+      {% endblock content %}
+      {% include 'footer.html' %}
