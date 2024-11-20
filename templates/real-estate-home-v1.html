@@ -119,19 +119,38 @@
           <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-scroll-header>
             <meta charset="utf-8">
         <title>Finder | Real Estate | 404 Not Found</title>
-            <div class="container"><a class="navbar-brand me-3 me-xl-4" href="{% url 'home' %}"><img class="d-block" src="{% static 'img/logo/logo-dark.svg' %}" width="116" alt="Finder"></a>
+            <div class="container"><a class="navbar-brand me-3 me-xl-4" href="{% url 'pages:home' %}"><img class="d-block" src="{% static 'img/logo/logo-dark.svg' %}" width="116" alt="Finder"></a>
               <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-              <div class="dropdown d-none d-lg-block order-lg-3 my-n2 me-3"><a class="d-block py-2" href="{% url 'account_info' %}"><img class="rounded-circle" src="{% static 'img/avatars/30.jpg' %}" width="40" alt="Annette Black"></a>
+              <div class="dropdown d-none d-lg-block order-lg-3 my-n2 me-3"><a class="d-block py-2" href="{% url 'users:account_info' %}"><img class="rounded-circle" src="{% static 'img/avatars/30.jpg' %}" width="40" alt="Annette Black"></a>
                 <div class="dropdown-menu dropdown-menu-end">
                   <div class="d-flex align-items-start border-bottom px-3 py-1 mb-2" style="width: 16rem;"><img class="rounded-circle" src="{% static 'img/avatars/03.jpg' %}" width="48" alt="Annette Black">
                     <div class="ps-2">
                       <h6 class="fs-base mb-0">Annette Black</h6><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
                       <div class="fs-xs py-2">(302) 555-0107<br>annette_black@email.com</div>
                     </div>
-                  </div><a class="dropdown-item" href="{% url 'account_info' %}"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="{% url 'account_security' %}"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a><a class="dropdown-item" href="{% url 'account_properties' %}"><i class="fi-home opacity-60 me-2"></i>My Properties</a><a class="dropdown-item" href="{% url 'account_wishlist' %}"><i class="fi-heart opacity-60 me-2"></i>Wishlist</a><a class="dropdown-item" href="{% url 'account_reviews' %}"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="dropdown-item" href="{% url 'account_notification' %}"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
-                  <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'help_center' %}">Help</a><a class="dropdown-item" href="{% url 'signin' %}">Sign Out</a>
+                  </div>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'users:account_info' %}">
+                    <i class="fi-user opacity-60 me-2"></i>Personal Info
+                  </a>
+                  <a class="dropdown-item" href="{% url 'users:security' %}">
+                    <i class="fi-lock opacity-60 me-2"></i>Password &amp; Security
+                  </a>
+                  <a class="dropdown-item" href="{% url 'properties:account_properties' %}">
+                    <i class="fi-home opacity-60 me-2"></i>My Properties
+                  </a>
+                  <a class="dropdown-item" href="{% url 'wishlist:account_wishlist' %}">
+                    <i class="fi-heart opacity-60 me-2"></i>Wishlist
+                  </a>
+                  <a class="dropdown-item" href="{% url 'pages:account_reviews' %}">
+                    <i class="fi-star opacity-60 me-2"></i>Reviews
+                  </a>
+                  <a class="dropdown-item" href="{% url 'notifications:account_notifications' %}">
+                    <i class="fi-bell opacity-60 me-2"></i>Notifications
+                  </a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'pages:help_center' %}">Help</a><a class="dropdown-item" href="{% url 'users:signin' %}">Sign Out</a>
                 </div>
-              </div><a class="btn btn-primary btn-sm ms-2 order-lg-3" href="{% url 'add_property' %}"><i class="fi-plus me-2"></i>Add<span class='d-none d-sm-inline'> property</span></a>
+              </div><a class="btn btn-primary btn-sm ms-2 order-lg-3" href="{% url 'properties:add_property' %}"><i class="fi-plus me-2"></i>Add<span class='d-none d-sm-inline'> property</span></a>
               <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
                 <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
                   <!-- Demos switcher-->
@@ -139,41 +158,41 @@
                   <!-- Menu items-->
                   <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{% url 'home' %}">Home v.1</a></li>
+                      <li><a class="dropdown-item" href="{% url 'pages:home' %}">Home v.1</a></li>
                     </ul>
                   </li>
                   <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalog</a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{% url 'catalog_rent' %}">Property for Rent</a></li>
-                      <li><a class="dropdown-item" href="{% url 'catalog_sale' %}">Property for Sale</a></li>
+                      <li><a class="dropdown-item" href="{% url 'properties:catalog_rent' %}">Property for Rent</a></li>
+                      <li><a class="dropdown-item" href="{% url 'properties:catalog_sale' %}">Property for Sale</a></li>
                     </ul>
                   </li>
                   <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vendor</a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{% url 'add_property' %}">Add Property</a></li>
-                      <li><a class="dropdown-item" href="{% url 'property_promotion' %}">Property Promotion</a></li>
-                      <li><a class="dropdown-item" href="{% url 'vendor_properties' %}">Vendor Page: Properties</a></li>
+                      <li><a class="dropdown-item" href="{% url 'properties:add_property' %}">Add Property</a></li>
+                      <li><a class="dropdown-item" href="{% url 'properties:property_promotion' %}">Property Promotion</a></li>
+                      <li><a class="dropdown-item" href="{% url 'pages:vendor_properties' %}">Vendor Page: Properties</a></li>
                     </ul>
                   </li>
                   <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{% url 'about' %}">About</a></li>
+                      <li><a class="dropdown-item" href="{% url 'pages:about' %}">About</a></li>
                       <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="{% url 'blog' %}">Blog Grid</a></li>
-                          <li><a class="dropdown-item" href="{% url 'blog_single' %}">Single Post</a></li>
+                          <li><a class="dropdown-item" href="{% url 'pages:blog' %}">Blog Grid</a></li>
+                          <li><a class="dropdown-item" href="{% url 'pages:blog_single' %}">Single Post</a></li>
                         </ul>
                       </li>
-                      <li><a class="dropdown-item" href="{% url 'contacts' %}">Contacts</a></li>
-                      <li><a class="dropdown-item" href="{% url 'help_center' %}">Help Center</a></li>
+                      <li><a class="dropdown-item" href="{% url 'pages:contacts' %}">Contacts</a></li>
+                      <li><a class="dropdown-item" href="{% url 'pages:help_center' %}">Help Center</a></li>
                     </ul>
                   </li>
                   <li class="nav-item dropdown d-lg-none"><a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="rounded-circle me-2" src="{% static 'img/avatars/30.jpg' %}" width="30" alt="Annette Black">Annette Black</a>
                     <div class="dropdown-menu">
                       <div class="ps-3"><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
                         <div class="fs-xs py-2">(302) 555-0107<br>annette_black@email.com</div>
-                      </div><a class="dropdown-item" href="{% url 'account_info' %}"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="{% url 'account_notification' %}"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
-                      <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'help_center' %}">Help</a><a class="dropdown-item" href="{% url 'signin' %}">Sign Out</a>
+                      </div><a class="dropdown-item" href="{% url 'users:account_info' %}"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="{% url 'users:security' %}"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a>
+                      <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'pages:help_center' %}">Help</a><a class="dropdown-item" href="{% url 'users:signin' %}">Sign Out</a>
                     </div>
                   </li>
                 </ul>
@@ -290,7 +309,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header d-block position-relative border-0 px-sm-5 px-4">
-              <h3 class="h4 modal-title mt-4 text-center">Explore your property’s value</h3>
+              <h3 class="h4 modal-title mt-4 text-center">Explore your property's value</h3>
               <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body px-sm-5 px-4">
@@ -412,26 +431,26 @@
       <!-- Property categories-->
       <section class="container mb-5">
         <div class="row row-cols-lg-6 row-cols-sm-3 row-cols-2 g-3 g-xl-4">
-          <div class="col"><a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="{% url 'catalog_rent' %}">
+          <div class="col"><a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="{% url 'properties:catalog_rent' %}">
               <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-real-estate-house"></i></div>
               <h3 class="icon-box-title fs-base mb-0">Houses</h3></a></div>
-          <div class="col"><a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="r{% url 'catalog_rent' %}">
+          <div class="col"><a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="{% url 'properties:catalog_rent' %}">
               <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-apartment"></i></div>
               <h3 class="icon-box-title fs-base mb-0">Apartments</h3></a></div>
-          <div class="col"><a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="{% url 'catalog_rent' %}">
+          <div class="col"><a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="{% url 'properties:catalog_rent' %}">
               <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-shop"></i></div>
               <h3 class="icon-box-title fs-base mb-0">Commercial</h3></a></div>
-          <div class="col"><a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="{% url 'catalog_rent' %}">
+          <div class="col"><a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="{% url 'properties:catalog_rent' %}">
               <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-rent"></i></div>
               <h3 class="icon-box-title fs-base mb-0">Daily rental</h3></a></div>
-          <div class="col"><a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="{% url 'catalog_rent' %}">
+          <div class="col"><a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="{% url 'properties:catalog_rent' %}">
               <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-house-chosen"></i></div>
               <h3 class="icon-box-title fs-base mb-0">New buildings</h3></a></div>
           <div class="col">
             <div class="dropdown h-100"><a class="icon-box card card-body h-100 border-0 shadow-sm card-hover text-center" href="#" data-bs-toggle="dropdown">
                 <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-dots-horisontal"></i></div>
                 <h3 class="icon-box-title fs-base mb-0">More</h3></a>
-              <div class="dropdown-menu dropdown-menu-end my-1"><a class="dropdown-item fw-bold" href="{% url 'catalog_sale' %}"><i class="fi-single-bed fs-base opacity-60 me-2"></i>Room</a><a class="dropdown-item fw-bold" href="{% url 'catalog_rent' %}"><i class="fi-computer fs-base opacity-60 me-2"></i>Office</a><a class="dropdown-item fw-bold" href="{% url 'catalog_sale' %}"><i class="fi-real-estate-buy fs-base opacity-60 me-2"></i>Land</a><a class="dropdown-item fw-bold" href="{% url 'catalog_rent' %}"><i class="fi-parking fs-base opacity-60 me-2"></i>Parking lot</a></div>
+              <div class="dropdown-menu dropdown-menu-end my-1"><a class="dropdown-item fw-bold" href="{% url 'properties:catalog_sale' %}"><i class="fi-single-bed fs-base opacity-60 me-2"></i>Room</a><a class="dropdown-item fw-bold" href="{% url 'properties:catalog_rent' %}"><i class="fi-computer fs-base opacity-60 me-2"></i>Office</a><a class="dropdown-item fw-bold" href="{% url 'properties:catalog_sale' %}"><i class="fi-real-estate-buy fs-base opacity-60 me-2"></i>Land</a><a class="dropdown-item fw-bold" href="{% url 'properties:catalog_rent' %}"><i class="fi-parking fs-base opacity-60 me-2"></i>Parking lot</a></div>
             </div>
           </div>
         </div>
@@ -446,7 +465,7 @@
                   <h2 class="h4 card-title">Buy a property</h2>
                   <p class="card-text fs-sm">Blandit lorem dictum in velit. Et nisi at faucibus mauris pretium enim. Risus sapien nisi aliquam egestas leo dignissim.</p>
                 </div>
-                <div class="card-footer pt-0 border-0"><a class="btn btn-outline-primary stretched-link" href="{% url 'catalog_sale' %}">Find a home</a></div>
+                <div class="card-footer pt-0 border-0"><a class="btn btn-outline-primary stretched-link" href="{% url 'properties:catalog_sale' %}">Find a home</a></div>
               </div>
             </div>
             <div class="col">
@@ -464,7 +483,7 @@
                   <h2 class="h4 card-title">Rent a property</h2>
                   <p class="card-text fs-sm">Sed sed aliquet sed id purus malesuada congue viverra. Habitant quis lacus, volutpat natoque ipsum iaculis cursus.</p>
                 </div>
-                <div class="card-footer pt-0 border-0"><a class="btn btn-outline-primary stretched-link" href="{% url 'catalog_rent' %}">Find a rental</a></div>
+                <div class="card-footer pt-0 border-0"><a class="btn btn-outline-primary stretched-link" href="{% url 'properties:catalog_rent' %}">Find a rental</a></div>
               </div>
             </div>
           </div>
@@ -474,14 +493,14 @@
       <!-- Top offers (carousel)-->
       <section class="container mb-5 pb-md-4">
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <h2 class="h3 mb-0">Top offers</h2><a class="btn btn-link fw-normal p-0" href="{% url 'catalog_rent' %}">View all<i class="fi-arrow-long-right ms-2"></i></a>
+          <h2 class="h3 mb-0">Top offers</h2><a class="btn btn-link fw-normal p-0" href="{% url 'properties:catalog_rent' %}">View all<i class="fi-arrow-long-right ms-2"></i></a>
         </div>
         <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
           <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
             <!-- Item-->
             <div class="col">
               <div class="card shadow-sm card-hover border-0 h-100">
-                <div class="card-img-top card-img-hover"><a class="img-overlay" href="{% url 'single_v1' %}"></a>
+                <div class="card-img-top card-img-hover"><a class="img-overlay" href="{% url 'properties:single_v1' %}"></a>
                   <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-info">New</span></div>
                   <div class="content-overlay end-0 top-0 pt-3 pe-3">
                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
@@ -489,7 +508,7 @@
                 </div>
                 <div class="card-body position-relative pb-3">
                   <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                  <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="{% url 'single_v1' %}">3-bed Apartment | 67 sq.m</a></h3>
+                  <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="{% url 'properties:single_v1' %}">3-bed Apartment | 67 sq.m</a></h3>
                   <p class="mb-2 fs-sm text-muted">3811 Ditmars Blvd Astoria, NY 11105</p>
                   <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$1,629</div>
                 </div>
@@ -499,7 +518,7 @@
             <!-- Item-->
             <div class="col">
               <div class="card shadow-sm card-hover border-0 h-100">
-                <div class="card-img-top card-img-hover"><a class="img-overlay" href="{% url 'single_v1' %}"></a>
+                <div class="card-img-top card-img-hover"><a class="img-overlay" href="{% url 'properties:single_v1' %}"></a>
                   <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-danger">Featured</span></div>
                   <div class="content-overlay end-0 top-0 pt-3 pe-3">
                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
@@ -507,7 +526,7 @@
                 </div>
                 <div class="card-body position-relative pb-3">
                   <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For sale</h4>
-                  <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="{% url 'single_v1' %}">Family Home| 120 sq.m</a></h3>
+                  <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="{% url 'properties:single_v1' %}">Family Home| 120 sq.m</a></h3>
                   <p class="mb-2 fs-sm text-muted">67-04 Myrtle Ave Glendale, NY 11385</p>
                   <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$84,000</div>
                 </div>
@@ -517,7 +536,7 @@
             <!-- Item-->
             <div class="col">
               <div class="card shadow-sm card-hover border-0 h-100">
-                <div class="card-img-top card-img-hover"><a class="img-overlay" href="{% url 'single_v1' %}"></a>
+                <div class="card-img-top card-img-hover"><a class="img-overlay" href="{% url 'properties:single_v1' %}"></a>
                   <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success">Verified</span></div>
                   <div class="content-overlay end-0 top-0 pt-3 pe-3">
                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
@@ -525,7 +544,7 @@
                 </div>
                 <div class="card-body position-relative pb-3">
                   <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                  <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="{% url 'single_v1' %}">Greenpoint Rentals | 85 sq.m</a></h3>
+                  <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="{% url 'properties:single_v1' %}">Greenpoint Rentals | 85 sq.m</a></h3>
                   <p class="mb-2 fs-sm text-muted">1510 Castle Hill Ave Bronx, NY 10462</p>
                   <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$1,330</div>
                 </div>
@@ -535,7 +554,7 @@
             <!-- Item-->
             <div class="col">
               <div class="card shadow-sm card-hover border-0 h-100">
-                <div class="card-img-top card-img-hover"><a class="img-overlay" href="{% url 'single_v1' %}"></a>
+                <div class="card-img-top card-img-hover"><a class="img-overlay" href="{% url 'properties:single_v1' %}"></a>
                   <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-info">New</span></div>
                   <div class="content-overlay end-0 top-0 pt-3 pe-3">
                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
@@ -543,7 +562,7 @@
                 </div>
                 <div class="card-body position-relative pb-3">
                   <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For sale</h4>
-                  <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="{% url 'single_v1' %}">Studio | 32 sq.m</a></h3>
+                  <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="{% url 'properties:single_v1' %}">Studio | 32 sq.m</a></h3>
                   <p class="mb-2 fs-sm text-muted">140-60 Beech Ave Flushing, NY 11355</p>
                   <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$65,000</div>
                 </div>
@@ -553,7 +572,7 @@
             <!-- Item-->
             <div class="col">
               <div class="card shadow-sm card-hover border-0 h-100">
-                <div class="card-img-top card-img-hover"><a class="img-overlay" href="{% url 'single_v1' %}"></a>
+                <div class="card-img-top card-img-hover"><a class="img-overlay" href="{% url 'properties:single_v1' %}"></a>
                   <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span></div>
                   <div class="content-overlay end-0 top-0 pt-3 pe-3">
                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
@@ -561,7 +580,7 @@
                 </div>
                 <div class="card-body position-relative pb-3">
                   <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For sale</h4>
-                  <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="{% url 'single_v1' %}">Cottage | 120 sq.m</a></h3>
+                  <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="{% url 'properties:single_v1' %}">Cottage | 120 sq.m</a></h3>
                   <p class="mb-2 fs-sm text-muted">42 Broadway New York, NY 10004</p>
                   <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$184,000</div>
                 </div>
@@ -587,7 +606,7 @@
               <li class="nav-item"><a class="nav-link fs-sm mb-2 mb-md-0" href="#">Rooms</a></li>
               <li class="nav-item"><a class="nav-link fs-sm mb-2 mb-md-0" href="#">Commercial</a></li>
             </ul>
-          </div><a class="btn btn-link fw-normal d-none d-lg-block p-0" href="{% url 'catalog_rent' %}">View all<i class="fi-arrow-long-right ms-2"></i></a>
+          </div><a class="btn btn-link fw-normal d-none d-lg-block p-0" href="{% url 'properties:catalog_rent' %}">View all<i class="fi-arrow-long-right ms-2"></i></a>
         </div>
         <div class="row g-4">
           <div class="col-md-6">
@@ -596,11 +615,11 @@
                 <div class="d-flex"><span class="badge bg-success fs-sm me-2">Verified</span><span class="badge bg-info fs-sm">New</span></div>
               </div>
               <div class="card-footer content-overlay border-0 pt-0 pb-4">
-                <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5"><a class="text-decoration-none text-light pe-2" href="{% url 'single_v1' %}">
+                <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5"><a class="text-decoration-none text-light pe-2" href="{% url 'properties:single_v1' %}">
                     <div class="fs-sm text-uppercase pt-2 mb-1">For rental</div>
                     <h3 class="h5 text-light mb-1">Luxury Rental Villa</h3>
                     <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>118-11 Sutphin Blvd Jamaica, NY 11434</div></a>
-                  <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="{% url 'single_v1' %}" style="height: 2.75rem;">From $3,850</a>
+                  <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="{% url 'properties:single_v1' %}" style="height: 2.75rem;">From $3,850</a>
                     <button class="btn btn-primary btn-icon border-end-0 border-top-0 border-bottom-0 border-light fs-sm" type="button"><i class="fi-heart"></i></button>
                   </div>
                 </div>
@@ -611,11 +630,11 @@
             <div class="card bg-size-cover bg-position-center border-0 overflow-hidden mb-4" style="background-image: url(img/real-estate/recent/02.jpg);"><span class="img-gradient-overlay"></span>
               <div class="card-body content-overlay pb-0"><span class="badge bg-info fs-sm">New</span></div>
               <div class="card-footer content-overlay border-0 pt-0 pb-4">
-                <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5"><a class="text-decoration-none text-light pe-2" href="{% url 'single_v1' %}">
+                <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5"><a class="text-decoration-none text-light pe-2" href="{% url 'properties:single_v1' %}">
                     <div class="fs-sm text-uppercase pt-2 mb-1">For sale</div>
                     <h3 class="h5 text-light mb-1">Duplex with Garage</h3>
                     <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>21 Pulaski Road Kings Park, NY 11754</div></a>
-                  <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="{% url 'single_v1' %}" style="height: 2.75rem;">$200,410</a>
+                  <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="{% url 'properties:single_v1' %}" style="height: 2.75rem;">$200,410</a>
                     <button class="btn btn-primary btn-icon border-end-0 border-top-0 border-bottom-0 border-light fs-sm" type="button"><i class="fi-heart"></i></button>
                   </div>
                 </div>
@@ -624,11 +643,11 @@
             <div class="card bg-size-cover bg-position-center border-0 overflow-hidden" style="background-image: url(img/real-estate/recent/03.jpg);"><span class="img-gradient-overlay"></span>
               <div class="card-body content-overlay pb-0"><span class="badge bg-info fs-sm">New</span></div>
               <div class="card-footer content-overlay border-0 pt-0 pb-4">
-                <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5"><a class="text-decoration-none text-light pe-2" href="{% url 'single_v1' %}">
+                <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5"><a class="text-decoration-none text-light pe-2" href="{% url 'properties:single_v1' %}">
                     <div class="fs-sm text-uppercase pt-2 mb-1">For sale</div>
                     <h3 class="h5 text-light mb-1">Country House</h3>
                     <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>6954 Grand AveMaspeth, NY 11378</div></a>
-                  <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="{% url 'single_v1' %}" style="height: 2.75rem;">$162,000</a>
+                  <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="{% url 'properties:single_v1' %}" style="height: 2.75rem;">$162,000</a>
                     <button class="btn btn-primary btn-icon border-end-0 border-top-0 border-bottom-0 border-light fs-sm" type="button"><i class="fi-heart"></i></button>
                   </div>
                 </div>
@@ -650,12 +669,12 @@
       <!-- Cities (carousel)-->
       <section class="container mb-5 pb-2">
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <h2 class="h3 mb-0">Search property by city</h2><a class="btn btn-link fw-normal ms-md-3 pb-0" href="{% url 'catalog_rent' %}">View all<i class="fi-arrow-long-right ms-2"></i></a>
+          <h2 class="h3 mb-0">Search property by city</h2><a class="btn btn-link fw-normal ms-md-3 pb-0" href="{% url 'properties:catalog_rent' %}">View all<i class="fi-arrow-long-right ms-2"></i></a>
         </div>
         <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
           <div class="tns-carousel-inner row gx-4 mx-0 py-md-4 py-3" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
             <!-- Item-->
-            <div class="col"><a class="card shadow-sm card-hover border-0" href="{% url 'catalog_sale' %}">
+            <div class="col"><a class="card shadow-sm card-hover border-0" href="{% url 'properties:catalog_sale' %}">
                 <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="img/real-estate/city/new-york.jpg" alt="New York">
                   <div class="content-overlay start-0 top-0 d-flex align-items-center justify-content-center w-100 h-100 p-3">
                     <div class="w-100 p-1">
@@ -682,7 +701,7 @@
                   <h3 class="mb-0 fs-base text-nav">New York</h3>
                 </div></a></div>
             <!-- Item-->
-            <div class="col"><a class="card shadow-sm card-hover border-0" href="{% url 'catalog_rent' %}">
+            <div class="col"><a class="card shadow-sm card-hover border-0" href="{% url 'properties:catalog_rent' %}">
                 <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="img/real-estate/city/chicago.jpg" alt="Chicago">
                   <div class="content-overlay start-0 top-0 d-flex align-items-center justify-content-center w-100 h-100 p-3">
                     <div class="w-100 p-1">
@@ -709,7 +728,7 @@
                   <h3 class="mb-0 fs-base text-nav">Chicago</h3>
                 </div></a></div>
             <!-- Item-->
-            <div class="col"><a class="card shadow-sm card-hover border-0" href="{% url 'catalog_sale' %}">
+            <div class="col"><a class="card shadow-sm card-hover border-0" href="{% url 'properties:catalog_sale' %}">
                 <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="img/real-estate/city/los-angeles.jpg" alt="Los Angeles">
                   <div class="content-overlay start-0 top-0 d-flex align-items-center justify-content-center w-100 h-100 p-3">
                     <div class="w-100 p-1">
@@ -736,7 +755,7 @@
                   <h3 class="mb-0 fs-base text-nav">Los Angeles</h3>
                 </div></a></div>
             <!-- Item-->
-            <div class="col"><a class="card shadow-sm card-hover border-0" href="{% url 'catalog_rent' %}">
+            <div class="col"><a class="card shadow-sm card-hover border-0" href="{% url 'properties:catalog_rent' %}">
                 <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="img/real-estate/city/san-diego.jpg" alt="San Diego">
                   <div class="content-overlay start-0 top-0 d-flex align-items-center justify-content-center w-100 h-100 p-3">
                     <div class="w-100 p-1">
@@ -763,7 +782,7 @@
                   <h3 class="mb-0 fs-base text-nav">San Diego</h3>
                 </div></a></div>
             <!-- Item-->
-            <div class="col"><a class="card shadow-sm card-hover border-0" href="r{% url 'catalog_sale' %}">
+            <div class="col"><a class="card shadow-sm card-hover border-0" href="r{% url 'properties:catalog_sale' %}">
                 <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="img/real-estate/city/dallas.jpg" alt="Dallas">
                   <div class="content-overlay start-0 top-0 d-flex align-items-center justify-content-center w-100 h-100 p-3">
                     <div class="w-100 p-1">
@@ -821,7 +840,7 @@
                       <h4 style="max-width: 22rem;">&quot;I will select the best accommodation for you&quot;</h4>
                       <p class="d-sm-none d-lg-block">Amet libero morbi venenatis ut est. Iaculis leo ultricies nunc id ante adipiscing. Vel metus odio at faucibus ac. Neque id placerat et id ut. Scelerisque eu mi ullamcorper sit urna. Est volutpat dignissim nec.</p>
                       <footer class="d-flex justify-content-between">
-                        <div class="pe-3"><a class="text-decoration-none" href="{% url 'vendor_properties' %}">
+                        <div class="pe-3"><a class="text-decoration-none" href="{% url 'pages:vendor_properties' %}">
                             <h6 class="mb-0">Floyd Miles</h6>
                             <div class="text-muted fw-normal fs-sm mb-3">Imperial Property Group Agent</div></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-linkedin"></i></a></div>
                         <div><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
@@ -843,7 +862,7 @@
                       <h4 style="max-width: 22rem;">&quot;I don't say no, I just figure out a way to make it work&quot;</h4>
                       <p class="d-sm-none d-lg-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
                       <footer class="d-flex justify-content-between">
-                        <div class="pe-3"><a class="text-decoration-none" href="{% url 'vendor_properties' %}">
+                        <div class="pe-3"><a class="text-decoration-none" href="{% url 'pages:vendor_properties' %}">
                             <h6 class="mb-0">Guy Hawkins</h6>
                             <div class="text-muted fw-normal fs-sm mb-3">Imperial Property Group Agent</div></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-linkedin"></i></a></div>
                         <div><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
@@ -865,7 +884,7 @@
                       <h4 style="max-width: 22rem;">&quot;Over 10 years of experience as a real estate agent&quot;</h4>
                       <p class="d-sm-none d-lg-block">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae.</p>
                       <footer class="d-flex justify-content-between">
-                        <div class="pe-3"><a class="text-decoration-none" href="{% url 'vendor_properties' %}">
+                        <div class="pe-3"><a class="text-decoration-none" href="{% url 'pages:vendor_properties' %}">
                             <h6 class="mb-0">Kristin Watson</h6>
                             <div class="text-muted fw-normal fs-sm mb-3">Imperial Property Group Agent</div></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-linkedin"></i></a></div>
                         <div><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
@@ -893,7 +912,7 @@
     <div class="row mb-5 pb-md-3 pb-lg-4">
       <div class="col-lg-6 mb-lg-0 mb-4">
         <div class="d-flex flex-sm-row flex-column justify-content-between mx-n2">
-          <div class="mb-sm-0 mb-4 px-2"><a class="d-inline-block mb-4" href="{url 'home'}"><img src="{% static 'img/logo/logo-dark.svg' %}" width="116" alt="logo"></a>
+          <div class="mb-sm-0 mb-4 px-2"><a class="d-inline-block mb-4" href="{% url 'pages:home' %}"><img src="{% static 'img/logo/logo-dark.svg' %}" width="116" alt="logo"></a>
             <ul class="nav flex-column mb-sm-4 mb-2">
               <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="mailto:example@email.com"><i class="fi-mail mt-n1 me-2 align-middle opacity-70"></i>example@email.com</a></li>
               <li class="nav-item"><a class="nav-link p-0 fw-normal" href="tel:4065550120"><i class="fi-device-mobile mt-n1 me-2 align-middle opacity-70"></i>(406) 555-0120</a></li>
@@ -925,7 +944,7 @@
       </div>
       <!-- <div class="col-xl-5 col-lg-6 offset-xl-1">
         <h4 class="h5">Recent Posts</h4>
-        <article class="d-flex align-items-start" style="max-width: 640px;"><a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="{% url 'blog_single' %}"><img class="rounded-3" src="{% static 'img/real-estate/blog/th01.jpg' %}" width="100" alt="Blog post"></a>
+        <article class="d-flex align-items-start" style="max-width: 640px;"><a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="{% url 'pages:blog_single' %}"><img class="rounded-3" src="{% static 'img/real-estate/blog/th01.jpg' %}" width="100" alt="Blog post"></a>
           <div>
             <h6 class="mb-1 fs-xs fw-normal text-uppercase text-primary">Home improvement</h6>
             <h5 class="mb-2 fs-base"><a class="nav-link" href="real-estate-blog-single.html">Your Guide to a Smart Apartment Searching</a></h5>
@@ -933,10 +952,10 @@
           </div>
         </article>
         <hr class="text-dark opacity-10 my-4">
-        <article class="d-flex align-items-start" style="max-width: 640px;"><a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="{% url 'blog_single' %}"><img class="rounded-3" src="{% static 'img/real-estate/blog/th02.jpg' %}" width="100" alt="Blog post"></a>
+        <article class="d-flex align-items-start" style="max-width: 640px;"><a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="{% url 'pages:blog_single' %}"><img class="rounded-3" src="{% static 'img/real-estate/blog/th02.jpg' %}" width="100" alt="Blog post"></a>
           <div>
             <h6 class="mb-1 fs-xs fw-normal text-uppercase text-primary">Tips &amp; advice</h6>
-            <h5 class="mb-2 fs-base"><a class="nav-link" href="{% url 'blog_single' %}">Top 10 Ways to Refresh Your Space</a></h5>
+            <h5 class="mb-2 fs-base"><a class="nav-link" href="{% url 'pages:blog_single' %}">Top 10 Ways to Refresh Your Space</a></h5>
             <p class="mb-2 fs-sm">Volutpat, orci, vitae arcu feugiat vestibulum ultricies nisi, aenean eget. Vitae enim, tellus tempor consequat mi vitae...</p><a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-calendar mt-n1 me-1 fs-sm align-middle opacity-70"></i>Nov 23</a><a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-chat-circle mt-n1 me-1 fs-sm align-middle opacity-70"></i>No comments</a>
           </div>
         </article>

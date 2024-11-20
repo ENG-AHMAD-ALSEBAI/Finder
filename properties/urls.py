@@ -1,5 +1,8 @@
 from django.urls import path , include
 from . import views
+
+app_name = 'properties'
+
 urlpatterns = [
     
     path('single_v1/', views.single_v1 , name='single_v1'),

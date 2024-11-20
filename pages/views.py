@@ -22,8 +22,8 @@ def single_v1(requste):
 def property_promotion(requste):
    return render(requste , 'real-estate-property-promotion.html')
 
-def home(requste):
-   return render(requste , 'real-estate-home-v1.html')
+def home(request):
+   return render(request, 'real-estate-home-v1.html')
 
 def help_center(requste):
    return render(requste , 'real-estate-help-center.html')
