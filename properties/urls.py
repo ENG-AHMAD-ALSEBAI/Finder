@@ -13,5 +13,6 @@ urlpatterns = [
     path('catalog_rent/', views.catalog_rent, name='catalog_rent'),
     path('add_property/', views.add_property, name='add_property'),
     path('account_properties/', views.account_properties, name='account_properties'),
+    path('vendor_properties/', views.vendor_properties, name='vendor_properties'),
 ]
 

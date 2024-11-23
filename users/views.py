@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import SignUpForm, SignInForm
+from .forms import SignUpForm, SignInForm, AccountInfoForm, UserUpdateForm
 from django.contrib.auth.hashers import make_password, check_password
-from .models import User
+from .models import User, UserInfo
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -65,7 +65,40 @@ def account_info(request):
     user_id = request.session.get('user_id')
     if user_id:
         user = User.objects.get(id_user=user_id)
-        return render(request, 'real-estate-account-info.html', {'user': user})
+        user_info, created = UserInfo.objects.get_or_create(user=user)
+        
+
+        if request.method == 'POST':
+            user_form = UserUpdateForm(request.POST, request.FILES, instance=user)
+            info_form = AccountInfoForm(request.POST, instance=user_info)
+            
+            if user_form.is_valid() and info_form.is_valid():
+                if 'photo' in request.FILES:
+                    print("\n✓ تم استلام صورة جديدة")
+                    user.photo = request.FILES['photo']
+                    user.save()
+                
+                user_form.save()
+                info_form.save()
+                messages.success(request, 'تم تحديث المعلومات بنجاح')
+                return redirect('users:account_info')
+            else:
+                print("\n✗ أخطاء في النموذج:")
+                if user_form.errors:
+                    print("أخطاء نموذج المستخدم:", user_form.errors)
+                if info_form.errors:
+                    print("أخطاء نموذج المعلومات الإضافية:", info_form.errors)
+        else:
+            user_form = UserUpdateForm(instance=user)
+            info_form = AccountInfoForm(instance=user_info)
+            
+        context = {
+            'user': user,
+            'user_info': user_info,
+            'user_form': user_form,
+            'info_form': info_form
+        }
+        return render(request, 'real-estate-account-info.html', context)
     return redirect('signin')
 
 @login_required(login_url='signin')

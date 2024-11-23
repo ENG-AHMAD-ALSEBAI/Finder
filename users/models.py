@@ -13,3 +13,32 @@ class User(models.Model):
 
     def __str__(self):
         return self.full_name
+    
+    def get_photo_url(self):
+        if self.photo:
+            return self.photo.url
+        return None
+
+class UserInfo(models.Model):
+    user = models.OneToOneField(
+        User, 
+        on_delete=models.CASCADE, 
+        related_name='info',
+        primary_key=True  # جعل حقل user هو المفتاح الرئيسي
+    )
+    short_bio = models.CharField(max_length=100, blank=True, null=True)
+    facebook = models.CharField(max_length=50, blank=True, null=True)
+    linkedin = models.CharField(max_length=50, blank=True, null=True)
+    twitter = models.CharField(max_length=50, blank=True, null=True)
+    instagram = models.CharField(max_length=50, blank=True, null=True)
+    company_name = models.CharField(max_length=100, blank=True, null=True)
+    address = models.CharField(max_length=200, blank=True, null=True)
+
+    def __str__(self):
+        return f"معلومات {self.user.full_name}"
+
+    class Meta:
+        verbose_name = "معلومات المستخدم"
+        verbose_name_plural = "معلومات المستخدمين"
+
+    

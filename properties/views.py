@@ -24,3 +24,6 @@ def add_property(requste):
 
 def account_properties(requste):
    return render(requste , 'real-estate-account-properties.html')    
+
+def vendor_properties(requste):
+   return render(requste , 'real-estate-vendor-properties.html')      
