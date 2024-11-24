@@ -106,6 +106,46 @@
     <link rel="stylesheet" media="screen" href="{% static 'vendor/filepond/dist/filepond.min.css' %}"/>
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="{% static 'css/theme.min.css' %}">
+    <!-- أضف هذا في قسم head من الصفحة -->
+    <style>
+        .form-check-group {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-check-inline {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+        }
+        
+        .form-check-input {
+            margin-right: 0.5rem;
+        }
+        
+        .form-check-label {
+            margin-bottom: 0;
+        }
+    </style>
+    <!-- أضف هذا في قسم style -->
+    <style>
+        /* الأنماط السابقة */
+        
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-check-input {
+            margin-right: 0.5rem;
+        }
+        
+        .form-check-label {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+    </style>
   </head>
   <!-- Body-->
   <body>
@@ -120,19 +160,19 @@
           <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-scroll-header>
             <meta charset="utf-8">
         <title>Finder | Real Estate | 404 Not Found</title>
-            <div class="container"><a class="navbar-brand me-3 me-xl-4" href="{% url 'home' %}"><img class="d-block" src="{% static 'img/logo/logo-dark.svg' %}" width="116" alt="Finder"></a>
+            <div class="container"><a class="navbar-brand me-3 me-xl-4" href="{% url 'pages:home' %}"><img class="d-block" src="{% static 'img/logo/logo-dark.svg' %}" width="116" alt="Finder"></a>
               <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-              <div class="dropdown d-none d-lg-block order-lg-3 my-n2 me-3"><a class="d-block py-2" href="{% url 'account_info' %}"><img class="rounded-circle" src="{% static 'img/avatars/30.jpg' %}" width="40" alt="Annette Black"></a>
+              <div class="dropdown d-none d-lg-block order-lg-3 my-n2 me-3"><a class="d-block py-2" href="{% url 'users:account_info' %}"><img class="rounded-circle" src="{% static 'img/avatars/30.jpg' %}" width="40" alt="Annette Black"></a>
                 <div class="dropdown-menu dropdown-menu-end">
                   <div class="d-flex align-items-start border-bottom px-3 py-1 mb-2" style="width: 16rem;"><img class="rounded-circle" src="{% static 'img/avatars/03.jpg' %}" width="48" alt="Annette Black">
                     <div class="ps-2">
                       <h6 class="fs-base mb-0">Annette Black</h6><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
                       <div class="fs-xs py-2">(302) 555-0107<br>annette_black@email.com</div>
                     </div>
-                  </div><a class="dropdown-item" href="{% url 'account_info' %}"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="{% url 'account_security' %}"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a><a class="dropdown-item" href="{% url 'account_properties' %}"><i class="fi-home opacity-60 me-2"></i>My Properties</a><a class="dropdown-item" href="{% url 'account_wishlist' %}"><i class="fi-heart opacity-60 me-2"></i>Wishlist</a><a class="dropdown-item" href="{% url 'account_reviews' %}"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="dropdown-item" href="{% url 'account_notification' %}"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
-                  <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'help_center' %}">Help</a><a class="dropdown-item" href="{% url 'signin' %}">Sign Out</a>
+                  </div><a class="dropdown-item" href="{% url 'users:account_info' %}"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="{% url 'users:security' %}"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a><a class="dropdown-item" href="{% url 'properties:account_properties' %}"><i class="fi-home opacity-60 me-2"></i>My Properties</a><a class="dropdown-item" href="{% url 'wishlist:account_wishlist' %}"><i class="fi-heart opacity-60 me-2"></i>Wishlist</a><a class="dropdown-item" href="{% url 'reviews:account_reviews' %}"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="dropdown-item" href="{% url 'notifications:account_notifications' %}"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'pages:help_center' %}">Help</a><a class="dropdown-item" href="{% url 'users:signin' %}">Sign Out</a>
                 </div>
-              </div><a class="btn btn-primary btn-sm ms-2 order-lg-3" href="{% url 'add_property' %}"><i class="fi-plus me-2"></i>Add<span class='d-none d-sm-inline'> property</span></a>
+              </div><a class="btn btn-primary btn-sm ms-2 order-lg-3" href="{% url 'properties:add_property' %}"><i class="fi-plus me-2"></i>Add<span class='d-none d-sm-inline'> property</span></a>
               <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
                 <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
                   <!-- Demos switcher-->
@@ -140,53 +180,54 @@
                   <!-- Menu items-->
                   <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{% url 'home' %}">Home v.1</a></li>
+                      <li><a class="dropdown-item" href="{% url 'pages:home' %}">Home v.1</a></li>
                     </ul>
                   </li>
                   <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalog</a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{% url 'catalog_rent' %}">Property for Rent</a></li>
-                      <li><a class="dropdown-item" href="{% url 'catalog_sale' %}">Property for Sale</a></li>
+                      <li><a class="dropdown-item" href="{% url 'properties:catalog_rent' %}">Property for Rent</a></li>
+                      <li><a class="dropdown-item" href="{% url 'properties:catalog_sale' %}">Property for Sale</a></li>
                     </ul>
                   </li>
                   <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vendor</a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{% url 'add_property' %}">Add Property</a></li>
-                      <li><a class="dropdown-item" href="{% url 'property_promotion' %}">Property Promotion</a></li>
-                      <li><a class="dropdown-item" href="{% url 'vendor_properties' %}">Vendor Page: Properties</a></li>
+                      <li><a class="dropdown-item" href="{% url 'properties:add_property' %}">Add Property</a></li>
+                      <li><a class="dropdown-item" href="{% url 'properties:property_promotion' %}">Property Promotion</a></li>
+                      <li><a class="dropdown-item" href="{% url 'properties:vendor_properties' %}">Vendor Page: Properties</a></li>
                     </ul>
                   </li>
                   <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{% url 'about' %}">About</a></li>
+                      <li><a class="dropdown-item" href="{% url 'pages:about' %}">About</a></li>
                       <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="{% url 'blog' %}">Blog Grid</a></li>
-                          <li><a class="dropdown-item" href="{% url 'blog_single' %}">Single Post</a></li>
+                          <li><a class="dropdown-item" href="{% url 'blog:blog' %}">Blog Grid</a></li>
+                          <li><a class="dropdown-item" href="{% url 'blog:blog_single' %}">Single Post</a></li>
                         </ul>
                       </li>
-                      <li><a class="dropdown-item" href="{% url 'contacts' %}">Contacts</a></li>
-                      <li><a class="dropdown-item" href="{% url 'help_center' %}">Help Center</a></li>
+                      <li><a class="dropdown-item" href="{% url 'pages:contacts' %}">Contacts</a></li>
+                      <li><a class="dropdown-item" href="{% url 'pages:help_center' %}">Help Center</a></li>
                     </ul>
                   </li>
                   <li class="nav-item dropdown d-lg-none"><a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="rounded-circle me-2" src="{% static 'img/avatars/30.jpg' %}" width="30" alt="Annette Black">Annette Black</a>
                     <div class="dropdown-menu">
                       <div class="ps-3"><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
                         <div class="fs-xs py-2">(302) 555-0107<br>annette_black@email.com</div>
-                      </div><a class="dropdown-item" href="{% url 'account_info' %}"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="real-estate-account-security.html"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a><a class="dropdown-item" href="real-estate-account-properties.html"><i class="fi-home opacity-60 me-2"></i>My Properties</a><a class="dropdown-item" href="real-estate-account-wishlist.html"><i class="fi-heart opacity-60 me-2"></i>Wishlist</a><a class="dropdown-item" href="real-estate-account-reviews.html"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="dropdown-item" href="real-estate-account-notifications.html"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
-                      <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'help_center' %}">Help</a><a class="dropdown-item" href="{% url 'signin' %}">Sign Out</a>
+                      </div><a class="dropdown-item" href="{% url 'users:account_info' %}"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="{% url 'users:security' %}"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a><a class="dropdown-item" href="{% url 'properties:account_properties' %}"><i class="fi-home opacity-60 me-2"></i>My Properties</a><a class="dropdown-item" href="{% url 'wishlist:account_wishlist' %}"><i class="fi-heart opacity-60 me-2"></i>Wishlist</a><a class="dropdown-item" href="{% url 'reviews:account_reviews' %}"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="dropdown-item" href="{% url 'notifications:account_notifications' %}"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
+                      <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'pages:help_center' %}">Help</a><a class="dropdown-item" href="{% url 'users:signin' %}">Sign Out</a>
                     </div>
                   </li>
                 </ul>
               </div>
             </div>
           </header>
+          
       <div class="modal fade" id="preview-modal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen" role="document">
           <div class="modal-content">
             <div class="modal-header d-block d-sm-flex">
               <h3 class="h5 text-muted fw-normal modal-title d-none d-sm-block">Property preview</h3>
-              <div class="d-flex align-items-center"><a class="btn btn-primary btn-sm me-4" href="{% url 'property_promotion' %}">Save and continue</a><span class="fs-xs text-muted ms-auto me-2">[ESC]</span>
+              <div class="d-flex align-items-center"><a class="btn btn-primary btn-sm me-4" href="{% url 'properties:property_promotion' %}">Save and continue</a><span class="fs-xs text-muted ms-auto me-2">[ESC]</span>
                 <button class="btn-close ms-0" type="button" data-bs-dismiss="modal"></button>
               </div>
             </div>
@@ -269,7 +310,7 @@
             <!-- Breadcrumb-->
             <nav class="mb-3 pt-md-3" aria-label="Breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'pages:home' %}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Add property</li>
               </ol>
             </nav>
@@ -281,321 +322,208 @@
                 <div class="progress-bar bg-warning" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
-            <!-- Basic info-->
-            <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info">
-              <h2 class="h4 mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Basic info</h2>
-              <div class="mb-3">
-                <label class="form-label" for="ap-title">Title <span class="text-danger">*</span></label>
-                <input class="form-control" type="text" id="ap-title" placeholder="Title for your property" value="Pine Apartments" required><span class="form-text">48 characters left</span>
-              </div>
-              <div class="row">
-                <div class="col-sm-6 mb-3">
-                  <label class="form-label" for="ap-category">Category <span class="text-danger">*</span></label>
-                  <select class="form-select" id="ap-category" required>
-                    <option value="" disabled hidden>Choose category</option>
-                    <option value="Rent">For rent</option>
-                    <option value="Sell">For sale</option>
-                  </select>
+            <!-- Main Form -->
+            <form method="POST" action="" enctype="multipart/form-data">
+              {% csrf_token %}
+              
+              <!-- Basic info section -->
+              <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info">
+                <h2 class="h4 mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Basic info</h2>
+                
+                <div class="mb-3">
+                  <label class="form-label">Title <span class="text-danger">*</span></label>
+                  {{ property_form.title }}
                 </div>
-                <div class="col-sm-6 mb-3">
-                  <label class="form-label" for="ap-type">Property type <span class="text-danger">*</span></label>
-                  <select class="form-select" id="ap-type" required>
-                    <option value="" disabled hidden>Choose property type</option>
-                    <option value="Apartment">Apartment</option>
-                    <option value="House">House</option>
-                    <option value="Commercial">Commercial</option>
-                    <option value="Commercial">Daily rental</option>
-                    <option value="New building">New building</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-label fw-bold pt-3 pb-2">Are you listing on Finder as part of a company?</div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" id="ap-company" name="ap-business-type">
-                <label class="form-check-label" for="ap-company">I am a registered business</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" id="ap-individual" name="ap-business-type" checked>
-                <label class="form-check-label" for="ap-individual">I am a private seller</label>
-              </div>
-            </section>
-            <!-- Location-->
-            <section class="card card-body border-0 shadow-sm p-4 mb-4" id="location">
-              <h2 class="h4 mb-4"><i class="fi-map-pin text-primary fs-5 mt-n1 me-2"></i>Location</h2>
-              <div class="row">
-                <div class="col-sm-6 mb-3">
-                  <label class="form-label" for="ap-country">Country / region <span class="text-danger">*</span></label>
-                  <select class="form-select" id="ap-country" required>
-                    <option value="" disabled>Choose country</option>
-                    <option value="Australia">Australia</option>
-                    <option value="Belgium">Belgium</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Germany">Germany</option>
-                    <option value="United States" selected>United States</option>
-                  </select>
-                </div>
-                <div class="col-sm-6 mb-3">
-                  <label class="form-label" for="ap-city">City <span class="text-danger">*</span></label>
-                  <select class="form-select" id="ap-city" required>
-                    <option value="" disabled>Choose city</option>
-                    <option value="Chicago">Chicago</option>
-                    <option value="Dallas">Dallas</option>
-                    <option value="Los Angeles">Los Angeles</option>
-                    <option value="New York" selected>New York</option>
-                    <option value="San Diego">San Diego</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-8 mb-3">
-                  <label class="form-label" for="ap-district">District <span class="text-danger">*</span></label>
-                  <select class="form-select" id="ap-district" required>
-                    <option value="" disabled>Choose district</option>
-                    <option value="Brooklyn">Brooklyn</option>
-                    <option value="Manhattan">Manhattan</option>
-                    <option value="Staten Island">Staten Island</option>
-                    <option value="The Bronx">The Bronx</option>
-                    <option value="Queens" selected>Queens</option>
-                  </select>
-                </div>
-                <div class="col-sm-4 mb-3">
-                  <label class="form-label" for="ap-zip">Zip code  <span class="text-danger">*</span></label>
-                  <input class="form-control" type="text" id="ap-zip" placeholder="Enter Zip code" value="67234" required>
-                </div>
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="ap-address">Street address <span class="text-danger">*</span></label>
-                <input class="form-control" type="text" id="ap-address" value="28 Jackson Avenue" required>
-              </div>
-              <div class="form-label fw-bold pt-3 pb-2">Display on the map</div>
-              <div class="interactive-map rounded-3" data-map-options="{&quot;mapLayer&quot;: &quot;https://api.maptiler.com/maps/pastel/{z}/{x}/{y}.png?key=5vRQzd34MMsINEyeKPIs&quot;, &quot;coordinates&quot;: [40.7447, -73.9485], &quot;zoom&quot;: 13, &quot;scrollWheelZoom&quot;: false, &quot;markers&quot;: [{&quot;coordinates&quot;: [40.7447, -73.9485], &quot;className&quot;: &quot;custom-marker-dot&quot;, &quot;popup&quot;: &quot;&lt;div class='p-3'&gt;&lt;h6 class='fs-base'&gt;Pine Apartments&lt;/h6&gt;&lt;p class='fs-xs text-muted pt-1 mt-n3 mb-0'&gt;28 Jackson Ave Long Island City, NY&lt;/p&gt;&lt;/div&gt;&quot;}]}" style="height: 250px;"></div>
-            </section>
-            <!-- Property details-->
-            <section class="card card-body border-0 shadow-sm p-4 mb-4" id="details">
-              <h2 class="h4 mb-4"><i class="fi-edit text-primary fs-5 mt-n1 me-2"></i>Property details</h2>
-              <div class="mb-4" style="max-width: 25rem;">
-                <label class="form-label" for="ap-area">Total area, sq.m</label>
-                <input class="form-control" type="number" id="ap-area" min="20" placeholder="Enter your area" value="56" required>
-              </div>
-              <div class="mb-4">
-                <label class="form-label d-block fw-bold mb-2 pb-1">Bedrooms</label>
-                <div class="btn-group btn-group-sm" role="group" aria-label="Choose number of bedrooms">
-                  <input class="btn-check" type="radio" id="studio" name="bedrooms">
-                  <label class="btn btn-outline-secondary fw-normal" for="studio">Studio</label>
-                  <input class="btn-check" type="radio" id="bedrooms-1" name="bedrooms">
-                  <label class="btn btn-outline-secondary fw-normal" for="bedrooms-1">1</label>
-                  <input class="btn-check" type="radio" id="bedrooms-2" name="bedrooms">
-                  <label class="btn btn-outline-secondary fw-normal" for="bedrooms-2">2</label>
-                  <input class="btn-check" type="radio" id="bedrooms-3" name="bedrooms">
-                  <label class="btn btn-outline-secondary fw-normal" for="bedrooms-3">3</label>
-                  <input class="btn-check" type="radio" id="bedrooms-4" name="bedrooms" checked>
-                  <label class="btn btn-outline-secondary fw-normal" for="bedrooms-4">4</label>
-                  <input class="btn-check" type="radio" id="bedrooms-5" name="bedrooms">
-                  <label class="btn btn-outline-secondary fw-normal" for="bedrooms-5">5+</label>
-                </div>
-              </div>
-              <div class="mb-4">
-                <label class="form-label d-block fw-bold mb-2 pb-1">Bathrooms</label>
-                <div class="btn-group btn-group-sm" role="group" aria-label="Choose number of bathrooms">
-                  <input class="btn-check" type="radio" id="bathrooms-1" name="bathrooms">
-                  <label class="btn btn-outline-secondary fw-normal" for="bathrooms-1">1</label>
-                  <input class="btn-check" type="radio" id="bathrooms-2" name="bathrooms" checked>
-                  <label class="btn btn-outline-secondary fw-normal" for="bathrooms-2">2</label>
-                  <input class="btn-check" type="radio" id="bathrooms-3" name="bathrooms">
-                  <label class="btn btn-outline-secondary fw-normal" for="bathrooms-3">3</label>
-                  <input class="btn-check" type="radio" id="bathrooms-4" name="bathrooms">
-                  <label class="btn btn-outline-secondary fw-normal" for="bathrooms-4">4</label>
-                </div>
-              </div>
-              <div class="mb-4">
-                <label class="form-label d-block fw-bold mb-2 pb-1">Parking spots</label>
-                <div class="btn-group btn-group-sm" role="group" aria-label="Choose number of parking spots">
-                  <input class="btn-check" type="radio" id="parking-1" name="parking">
-                  <label class="btn btn-outline-secondary fw-normal" for="parking-1">1</label>
-                  <input class="btn-check" type="radio" id="parking-2" name="parking" checked>
-                  <label class="btn btn-outline-secondary fw-normal" for="parking-2">2</label>
-                  <input class="btn-check" type="radio" id="parking-3" name="parking">
-                  <label class="btn btn-outline-secondary fw-normal" for="parking-3">3</label>
-                  <input class="btn-check" type="radio" id="parking-4" name="parking">
-                  <label class="btn btn-outline-secondary fw-normal" for="parking-4">4</label>
-                </div>
-              </div>
-              <div class="mb-4">
-                <label class="form-label d-block fw-bold mb-2 pb-1">Amenities</label>
+
                 <div class="row">
-                  <div class="col-sm-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="wifi" checked>
-                      <label class="form-check-label" for="wifi">WiFi</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="air-condition" checked>
-                      <label class="form-check-label" for="air-condition">Air conditioning</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="balcony">
-                      <label class="form-check-label" for="balcony">Balcony</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="garage">
-                      <label class="form-check-label" for="garage">Garage</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="gym">
-                      <label class="form-check-label" for="gym">Gym</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="free-parking" checked>
-                      <label class="form-check-label" for="free-parking">Free parking</label>
-                    </div>
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label">Category <span class="text-danger">*</span></label>
+                    {{ property_form.category }}
                   </div>
-                  <div class="col-sm-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="pets-friendly">
-                      <label class="form-check-label" for="pets-friendly">Pets-friendly</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="pool">
-                      <label class="form-check-label" for="pool">Pool</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="bar">
-                      <label class="form-check-label" for="bar">Bar</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="tv" checked>
-                      <label class="form-check-label" for="tv">TV</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="linens" checked>
-                      <label class="form-check-label" for="linens">Linens</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="heating" checked>
-                      <label class="form-check-label" for="heating">Heating</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="dishwasher">
-                      <label class="form-check-label" for="dishwasher">Dishwasher</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="iron" checked>
-                      <label class="form-check-label" for="iron">Iron</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="hair-dryer" checked>
-                      <label class="form-check-label" for="hair-dryer">Hair dryer</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="kitchen" checked>
-                      <label class="form-check-label" for="kitchen">Kitchen</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="breakfast">
-                      <label class="form-check-label" for="breakfast">Breakfast</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="security-cameras">
-                      <label class="form-check-label" for="security-cameras">Security cameras</label>
-                    </div>
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label">Property type <span class="text-danger">*</span></label>
+                    {{ property_form.property_type }}
                   </div>
                 </div>
-              </div>
-              <div class="mb-4">
-                <label class="form-label d-block fw-bold mb-2 pb-1">Pets</label>
+
+                <!-- Business Type section -->
+                <div class="mb-4">
+                    <label class="form-label d-block fw-bold mb-2 pb-1">Business Type</label>
+                    <div class="form-check-group">
+                        {% for radio in property_form.business_type %}
+                        <div class="form-check form-check-inline">
+                            {{ radio.tag }}
+                            <label class="form-check-label" for="{{ radio.id_for_label }}">
+                                {{ radio.choice_label }}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+              </section>
+
+              <!-- Location section -->
+              <section class="card card-body border-0 shadow-sm p-4 mb-4" id="location">
+                <h2 class="h4 mb-4"><i class="fi-map-pin text-primary fs-5 mt-n1 me-2"></i>Location</h2>
+                
                 <div class="row">
-                  <div class="col-sm-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="allow-cats">
-                      <label class="form-check-label" for="allow-cats">Cats allowed</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="allow-dogs">
-                      <label class="form-check-label" for="allow-dogs">Dogs allowed</label>
-                    </div>
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label">Country <span class="text-danger">*</span></label>
+                    {{ location_form.country }}
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label">City <span class="text-danger">*</span></label>
+                    {{ location_form.city }}
                   </div>
                 </div>
-              </div>
-              <label class="form-label" for="ap-description">Description </label>
-              <textarea class="form-control" id="ap-description" rows="5" placeholder="Describe your property"></textarea><span class="form-text">1500 characters left</span>
-            </section>
-            <!-- Price-->
-            <section class="card card-body border-0 shadow-sm p-4 mb-4" id="price">
-              <h2 class="h4 mb-4"><i class="fi-cash text-primary fs-5 mt-n1 me-2"></i>Price</h2>
-              <label class="form-label" for="ap-price">Price <span class="text-danger">*</span></label>
-              <div class="d-sm-flex">
-                <select class="form-select w-25 me-2 mb-2">
-                  <option value="usd">&#36;</option>
-                  <option value="eur">&#8364;</option>
-                  <option value="gbp">&#163;</option>
-                  <option value="jpy">&#165;</option>
-                </select>
-                <input class="form-control w-100 me-2 mb-2" type="number" id="ap-price" min="200" step="50" required>
-                <select class="form-select w-50 mb-2">
-                  <option value="day">per day</option>
-                  <option value="week">per week</option>
-                  <option value="month" selected>per month</option>
-                  <option value="year">per year</option>
-                </select>
-              </div>
-            </section>
-            <!-- Photos / video-->
-            <section class="card card-body border-0 shadow-sm p-4 mb-4" id="photos">
-              <h2 class="h4 mb-4"><i class="fi-image text-primary fs-5 mt-n1 me-2"></i>Photos / video</h2>
-              <div class="alert alert-info mb-4" role="alert">
-                <div class="d-flex"><i class="fi-alert-circle me-2 me-sm-3"></i>
-                  <p class="fs-sm mb-1">The maximum photo size is 8 MB. Formats: jpeg, jpg, png. Put the main picture first.<br>The maximum video size is 10 MB. Formats: mp4, mov.</p>
+
+                <div class="row">
+                  <div class="col-sm-8 mb-3">
+                    <label class="form-label">District <span class="text-danger">*</span></label>
+                    {{ location_form.district }}
+                  </div>
+                  <div class="col-sm-4 mb-3">
+                    <label class="form-label">Zip code <span class="text-danger">*</span></label>
+                    {{ location_form.zip_code }}
+                  </div>
                 </div>
-              </div>
-              <input class="file-uploader file-uploader-grid" type="file" multiple data-max-file-size="10MB" accept="image/png, image/jpeg, video/mp4, video/mov" data-label-idle="&lt;div class=&quot;btn btn-primary mb-3&quot;&gt;&lt;i class=&quot;fi-cloud-upload me-1&quot;&gt;&lt;/i&gt;Upload photos / video&lt;/div&gt;&lt;br&gt;or drag them in">
-            </section>
-            <!-- Contacts-->
-            <section class="card card-body border-0 shadow-sm p-4 mb-4" id="contacts">
-              <h2 class="h4 mb-4"><i class="fi-phone text-primary fs-5 mt-n1 me-2"></i>Contacts</h2>
-              <div class="row">
-                <div class="col-sm-6 mb-3">
-                  <label class="form-label" for="ap-fn">First name <span class="text-danger">*</span></label>
-                  <input class="form-control" type="text" id="ap-fn" value="Annette" placeholder="Enter your first name" required>
+
+                <div class="mb-3">
+                  <label class="form-label">Address <span class="text-danger">*</span></label>
+                  {{ location_form.address }}
                 </div>
-                <div class="col-sm-6 mb-3">
-                  <label class="form-label" for="ap-sn">Second name <span class="text-danger">*</span></label>
-                  <input class="form-control" type="text" id="ap-sn" value="Black" placeholder="Enter your second name" required>
+              </section>
+
+              <!-- Property details section -->
+              <section class="card card-body border-0 shadow-sm p-4 mb-4" id="details">
+                <h2 class="h4 mb-4"><i class="fi-edit text-primary fs-5 mt-n1 me-2"></i>Property details</h2>
+                
+                <div class="mb-4">
+                  <label class="form-label">Total area (sq.m)</label>
+                  {{ details_form.area }}
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-6 mb-3">
-                  <label class="form-label" for="ap-email">Email<span class="text-danger">*</span></label>
-                  <input class="form-control" type="text" id="ap-email" value="annette_black@email.com" placeholder="Enter your email">
+
+                <div class="mb-4">
+                  <label class="form-label">Bedrooms</label>
+                  {{ details_form.bedrooms }}
                 </div>
-                <div class="col-sm-6 mb-3">
-                  <label class="form-label" for="ap-phone">Phone number <span class="text-danger">*</span></label>
-                  <input class="form-control" type="tel" id="ap-phone" data-format="custom" data-delimiter="-" data-blocks="3 3 4" value="302-555-0107" placeholder="000-000-0000">
+
+                <div class="mb-4">
+                  <label class="form-label">Bathrooms</label>
+                  {{ details_form.bathrooms }}
                 </div>
-              </div>
-              <label class="form-label" for="ap-company-name">Company</label>
-              <input class="form-control" type="text" id="ap-company-name" placeholder="Enter company name">
-            </section>
-            <!-- Action buttons -->
-            <section class="d-sm-flex justify-content-between pt-2"><a class="btn btn-outline-primary btn-lg d-block mb-3 mb-sm-2" href="#preview-modal" data-bs-toggle="modal"><i class="fi-eye-on ms-n1 me-2"></i>Preview</a><a class="btn btn-primary btn-lg d-block mb-2" href="{% url 'property_promotion' %}">Save and continue</a></section>
+
+                <div class="mb-4">
+                  <label class="form-label">Parking spots</label>
+                  {{ details_form.parking }}
+                </div>
+
+                <!-- في قسم Property details -->
+                <div class="mb-4">
+                    <label class="form-label d-block fw-bold mb-2 pb-1">Amenities</label>
+                    <div class="row">
+                        {% for checkbox in details_form.amenities %}
+                        <div class="col-sm-4 mb-2">
+                            <div class="form-check">
+                                {{ checkbox.tag }}
+                                <label class="form-check-label" for="{{ checkbox.id_for_label }}">
+                                    {{ checkbox.choice_label }}
+                                </label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label">Description</label>
+                  {{ details_form.description }}
+                </div>
+              </section>
+
+              <!-- Price section -->
+              <section class="card card-body border-0 shadow-sm p-4 mb-4" id="price">
+                <h2 class="h4 mb-4"><i class="fi-cash text-primary fs-5 mt-n1 me-2"></i>Price</h2>
+                
+                <div class="d-sm-flex">
+                  <div class="mb-2 me-2">
+                    <label class="form-label">Currency</label>
+                    {{ price_form.price_currency }}
+                  </div>
+                  <div class="mb-2 me-2 w-100">
+                    <label class="form-label">Price</label>
+                    {{ price_form.price }}
+                  </div>
+                  <div class="mb-2">
+                    <label class="form-label">Period</label>
+                    {{ price_form.price_period }}
+                  </div>
+                </div>
+              </section>
+
+              <!-- Photos section -->
+              <section class="card card-body border-0 shadow-sm p-4 mb-4" id="photos">
+                <h2 class="h4 mb-4"><i class="fi-image text-primary fs-5 mt-n1 me-2"></i>Photos</h2>
+                <div class="alert alert-info mb-4" role="alert">
+                  <div class="d-flex">
+                    <i class="fi-alert-circle me-2 me-sm-3"></i>
+                    <p class="fs-sm mb-1">The maximum photo size is 8 MB. Formats: jpeg, jpg, png. Put the main picture first.</p>
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label class="form-label">Main Photo</label>
+                  {{ photo_form.main_photo }}
+                </div>
+                <div class="mb-4">
+                  <label class="form-label">Additional Photos</label>
+                  {{ photo_form.photo_1 }}
+                  {{ photo_form.photo_2 }}
+                  {{ photo_form.photo_3 }}
+                </div>
+              </section>
+
+              <!-- Contacts section -->
+              <section class="card card-body border-0 shadow-sm p-4 mb-4" id="contacts">
+                <h2 class="h4 mb-4"><i class="fi-phone text-primary fs-5 mt-n1 me-2"></i>Contacts</h2>
+                
+                <div class="row">
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label">Name <span class="text-danger">*</span></label>
+                    {{ contacts_form.contact_name }}
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label">Phone <span class="text-danger">*</span></label>
+                    {{ contacts_form.contact_phone }}
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Email <span class="text-danger">*</span></label>
+                  {{ contacts_form.contact_email }}
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Company name</label>
+                  {{ contacts_form.company_name }}
+                </div>
+              </section>
+
+              <!-- Action buttons -->
+              <section class="d-sm-flex justify-content-between pt-2">
+                <a class="btn btn-outline-primary btn-lg d-block mb-3 mb-sm-2" href="#preview-modal" data-bs-toggle="modal">
+                  <i class="fi-eye-on ms-n1 me-2"></i>Preview
+                </a>
+                <button type="submit" class="btn btn-primary btn-lg d-block mb-2">
+                  Save and continue
+                </button>
+              </section>
+            </form>
+
           </div>
-          <!-- Progress of completion-->
+
+          <!-- Progress sidebar -->
           <aside class="col-lg-3 offset-lg-1 d-none d-lg-block">
-            <div class="sticky-top pt-5">
-              <h6 class="pt-5 mt-3 mb-2">65% content filled</h6>
-              <div class="progress mb-4" style="height: .25rem;">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <ul class="list-unstyled">
-                <li class="d-flex align-items-center"><i class="fi-check text-primary me-2"></i><a class="nav-link fw-normal ps-1 p-0" href="#basic-info" data-scroll data-scroll-offset="20">Basic info</a></li>
-                <li class="d-flex align-items-center"><i class="fi-check text-primary me-2"></i><a class="nav-link fw-normal ps-1 p-0" href="#location" data-scroll data-scroll-offset="20">Location</a></li>
-                <li class="d-flex align-items-center"><i class="fi-check text-primary me-2"></i><a class="nav-link fw-normal ps-1 p-0" href="#details" data-scroll data-scroll-offset="20">Property details</a></li>
-                <li class="d-flex align-items-center"><i class="fi-check text-muted me-2"></i><a class="nav-link fw-normal ps-1 p-0" href="#price" data-scroll data-scroll-offset="20">Price</a></li>
-                <li class="d-flex align-items-center"><i class="fi-check text-muted me-2"></i><a class="nav-link fw-normal ps-1 p-0" href="#photos" data-scroll data-scroll-offset="20">Photos / video</a></li>
-                <li class="d-flex align-items-center"><i class="fi-check text-primary me-2"></i><a class="nav-link fw-normal ps-1 p-0" href="#contacts" data-scroll data-scroll-offset="20">Contacts</a></li>
-              </ul>
-            </div>
+            <!-- محتوى Sidebar الحالي -->
           </aside>
         </div>
       </div>
@@ -639,24 +567,24 @@
           </div>
         </div>
       </div>
-      <!-- <div class="col-xl-5 col-lg-6 offset-xl-1">
+      <div class="col-xl-5 col-lg-6 offset-xl-1">
         <h4 class="h5">Recent Posts</h4>
-        <article class="d-flex align-items-start" style="max-width: 640px;"><a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="{% url 'blog_single' %}"><img class="rounded-3" src="{% static 'img/real-estate/blog/th01.jpg' %}" width="100" alt="Blog post"></a>
+        <article class="d-flex align-items-start" style="max-width: 640px;"><a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="{% url 'blog:blog_single' %}"><img class="rounded-3" src="{% static 'img/real-estate/blog/th01.jpg' %}" width="100" alt="Blog post"></a>
           <div>
             <h6 class="mb-1 fs-xs fw-normal text-uppercase text-primary">Home improvement</h6>
-            <h5 class="mb-2 fs-base"><a class="nav-link" href="real-estate-blog-single.html">Your Guide to a Smart Apartment Searching</a></h5>
+            <h5 class="mb-2 fs-base"><a class="nav-link" href="{% url 'blog:blog_single' %}">Your Guide to a Smart Apartment Searching</a></h5>
             <p class="mb-2 fs-sm">Mi justo, varius vitae cursus ipsum sem massa amet pellentesque. Ipsum enim sit nulla ridiculus semper nam...</p><a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-calendar mt-n1 me-1 fs-sm align-middle opacity-70"></i>Dec 4</a><a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-chat-circle mt-n1 me-1 fs-sm align-middle opacity-70"></i>2 comments</a>
           </div>
         </article>
         <hr class="text-dark opacity-10 my-4">
-        <article class="d-flex align-items-start" style="max-width: 640px;"><a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="{% url 'blog_single' %}"><img class="rounded-3" src="{% static 'img/real-estate/blog/th02.jpg' %}" width="100" alt="Blog post"></a>
+        <article class="d-flex align-items-start" style="max-width: 640px;"><a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="{% url 'blog:blog_single' %}"><img class="rounded-3" src="{% static 'img/real-estate/blog/th02.jpg' %}" width="100" alt="Blog post"></a>
           <div>
             <h6 class="mb-1 fs-xs fw-normal text-uppercase text-primary">Tips &amp; advice</h6>
-            <h5 class="mb-2 fs-base"><a class="nav-link" href="{% url 'blog_single' %}">Top 10 Ways to Refresh Your Space</a></h5>
+            <h5 class="mb-2 fs-base"><a class="nav-link" href="{% url 'blog:blog_single' %}">Top 10 Ways to Refresh Your Space</a></h5>
             <p class="mb-2 fs-sm">Volutpat, orci, vitae arcu feugiat vestibulum ultricies nisi, aenean eget. Vitae enim, tellus tempor consequat mi vitae...</p><a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-calendar mt-n1 me-1 fs-sm align-middle opacity-70"></i>Nov 23</a><a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-chat-circle mt-n1 me-1 fs-sm align-middle opacity-70"></i>No comments</a>
           </div>
         </article>
-      </div> -->
+      </div>
     </div>
     <!-- Banner-->
     <div class="bg-dark rounded-3">
