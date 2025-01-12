@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import SignUpForm, SignInForm, AccountInfoForm, UserUpdateForm
+from .forms import SignUpForm, SignInForm, AccountInfoForm, UserUpdateForm, ChangePasswordForm
 from django.contrib.auth.hashers import make_password, check_password
 from .models import User, UserInfo
 from django.contrib.auth.decorators import login_required
@@ -58,7 +58,34 @@ def signup(request):
 
 @login_required(login_url='signin')
 def account_security(request):
-    return render(request, 'real-estate-account-security.html')
+    if 'user_id' not in request.session:
+        messages.error(request, 'يجب تسجيل الدخول أولاً')
+        return redirect('users:signin')
+    
+    user = User.objects.get(id_user=request.session['user_id'])
+    
+    if request.method == 'POST':
+        form = ChangePasswordForm(request.POST)
+        if form.is_valid():
+            current_password = form.cleaned_data['current_password']
+            new_password = form.cleaned_data['new_password']
+            
+            # التحقق من كلمة المرور الحالية
+            if check_password(current_password, user.password):
+                # تحديث كلمة المرور
+                user.password = make_password(new_password)
+                user.save()
+                messages.success(request, 'تم تغيير كلمة المرور بنجاح')
+                return redirect('users:account_security')
+            else:
+                messages.error(request, 'كلمة المرور الحالية غير صحيحة')
+    else:
+        form = ChangePasswordForm()
+    
+    return render(request, 'real-estate-account-security.html', {
+        'form': form,
+        'user': user
+    })
 
 @login_required(login_url='signin')
 def account_info(request):

@@ -121,3 +121,29 @@ class UserUpdateForm(forms.ModelForm):
                 'data-image-resize-target-height': '200'
             })
         }
+
+class ChangePasswordForm(forms.Form):
+    current_password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'أدخل كلمة المرور الحالية'
+    }))
+    
+    new_password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'أدخل كلمة المرور الجديدة',
+        'minlength': '8'
+    }))
+    
+    confirm_new_password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'تأكيد كلمة المرور الجديدة',
+        'minlength': '8'
+    }))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        new_password = cleaned_data.get('new_password')
+        confirm_new_password = cleaned_data.get('confirm_new_password')
+        
+        if new_password and confirm_new_password and new_password != confirm_new_password:
+            raise forms.ValidationError("كلمات المرور الجديدة غير متطابقة")
