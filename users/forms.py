@@ -125,18 +125,18 @@ class UserUpdateForm(forms.ModelForm):
 class ChangePasswordForm(forms.Form):
     current_password = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control',
-        'placeholder': 'أدخل كلمة المرور الحالية'
+        'placeholder': 'Enter your current password.'
     }))
     
     new_password = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control',
-        'placeholder': 'أدخل كلمة المرور الجديدة',
+        'placeholder': ' Enter your new password.',
         'minlength': '8'
     }))
     
     confirm_new_password = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control',
-        'placeholder': 'تأكيد كلمة المرور الجديدة',
+        'placeholder': 'Confirm your new password.',
         'minlength': '8'
     }))
 

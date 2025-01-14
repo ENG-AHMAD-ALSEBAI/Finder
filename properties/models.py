@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from users.models import User
 
 class Property(models.Model):
     CATEGORY_CHOICES = [
@@ -23,8 +23,8 @@ class Property(models.Model):
     # Primary Key
     id_property = models.AutoField(primary_key=True)
     
-    # Foreign Key to User
-    id_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='properties')
+    # Foreign Key to Custom User Model
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='properties', to_field='id_user')
     
     # Basic Info Fields
     title = models.CharField(max_length=100)

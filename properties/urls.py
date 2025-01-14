@@ -5,7 +5,7 @@ app_name = 'properties'
 
 urlpatterns = [
     
-    path('single_v1/', views.single_v1 , name='single_v1'),
+    path('single_v1/', views.single_v1, name='single_v1'),
     path('single_v2/', views.single_v2 , name='single_v2'),
     path('property_promotion/', views.property_promotion , name='property_promotion'),
     path('home/', views.home, name='home'),
@@ -15,4 +15,3 @@ urlpatterns = [
     path('account_properties/', views.account_properties, name='account_properties'),
     path('vendor_properties/', views.vendor_properties, name='vendor_properties'),
 ]
-

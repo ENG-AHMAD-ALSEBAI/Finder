@@ -4,6 +4,8 @@ from .forms import (
     PropertyForm, PropertyLocationForm, PropertyDetailsForm,
     PropertyPriceForm, PropertyPhotoForm, PropertyContactsForm
 )
+from .models import Property
+from users.models import User  # إضافة استيراد نموذج المستخدم المخصص
 
 @login_required
 def add_property(request):
@@ -66,26 +68,62 @@ def add_property(request):
     
     return render(request, 'real-estate-add-property.html', context)
 
-def single_v2(requste):
-   return render(requste , 'real-estate-single-v2')
+def single_v2(request):
+   return render(request , 'real-estate-single-v2')
 
-def single_v1(requste):
-   return render(requste , 'real-estate-single-v1')
+def single_v1(request):
+    try:
+        # Get the custom user
+        custom_user = User.objects.get(email=request.user.email)
+        # Get the property with all related data
+        property = Property.objects.select_related(
+            'propertylocation',
+            'propertydetails',
+            'propertyprice',
+            'propertyphoto',
+            'propertycontacts'
+        ).first()  # Get the first property for now
+        
+        context = {
+            'property': property,
+            'user': custom_user,
+        }
+        return render(request, 'real-estate-single-v1.html', context)
+    except Property.DoesNotExist:
+        return redirect('properties:catalog_rent')
 
-def property_promotion(requste):
-   return render(requste , 'real-estate-property-promotion.html')
+def property_promotion(request):
+   return render(request , 'real-estate-property-promotion.html')
 
-def home(requste):
-   return render(requste , 'real-estate-home-v1.html')
+def home(request):
+   return render(request , 'real-estate-home-v1.html')
 
-def catalog_sale(requste):
-   return render(requste , 'real-estate-catalog-sale.html')
+def catalog_sale(request):
+   return render(request , 'real-estate-catalog-sale.html')
 
-def catalog_rent(requste):
-   return render(requste , 'real-estate-catalog-rent.html') 
+def catalog_rent(request):
+   return render(request , 'real-estate-catalog-rent.html') 
  
-def account_properties(requste):
-   return render(requste , 'real-estate-account-properties.html')    
+@login_required
+def account_properties(request):
+    try:
+        # Get the custom user
+        custom_user = User.objects.get(email=request.user.email)
+        # Get the user's properties with all related data
+        properties = Property.objects.filter(id_user=custom_user).select_related(
+            'propertylocation',
+            'propertydetails',
+            'propertyprice',
+            'propertyphoto',
+            'propertycontacts'
+        )
+        context = {
+            'user': custom_user,
+            'properties': properties
+        }
+        return render(request, 'real-estate-account-properties.html', context)
+    except User.DoesNotExist:
+        return redirect('login')
 
 def vendor_properties(requste):
    return render(requste , 'real-estate-vendor-properties.html')      
