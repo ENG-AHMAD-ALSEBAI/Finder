@@ -35,9 +35,9 @@ class PropertyContactsInline(admin.StackedInline):
 
 @admin.register(Property)
 class PropertyAdmin(admin.ModelAdmin):
-    list_display = ('id_property', 'title', 'category', 'property_type', 'id_user', 'created_at')
-    list_filter = ('category', 'property_type', 'business_type', 'created_at')
-    search_fields = ('title', 'id_property', 'id_user__username')
+    list_display = ('title', 'id_user', 'property_type', 'category', 'pro_status', 'created_at')
+    list_filter = ('property_type', 'category', 'pro_status')
+    search_fields = ('title', 'description')
     ordering = ('-created_at',)
     date_hierarchy = 'created_at'
     
@@ -49,6 +49,18 @@ class PropertyAdmin(admin.ModelAdmin):
         PropertyContactsInline
     ]
 
+    def has_change_permission(self, request, obj=None):
+        return True
+
+    def has_view_permission(self, request, obj=None):
+        return True
+
+    def has_delete_permission(self, request, obj=None):
+        return True
+
+    def has_add_permission(self, request):
+        return True
+
     fieldsets = (
         ('Basic Information', {
             'fields': (
@@ -56,7 +68,8 @@ class PropertyAdmin(admin.ModelAdmin):
                 'title',
                 'category',
                 'property_type',
-                'business_type'
+                'business_type',
+                'pro_status'
             )
         }),
     )

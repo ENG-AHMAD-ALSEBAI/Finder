@@ -4,7 +4,7 @@ from .models import Property, PropertyLocation, PropertyDetails, PropertyPrice, 
 class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
-        fields = ['title', 'category', 'property_type', 'business_type']
+        fields = ['title', 'category', 'property_type', 'business_type', 'pro_status']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter property title'}),
             'category': forms.Select(attrs={'class': 'form-select'}),
@@ -12,7 +12,8 @@ class PropertyForm(forms.ModelForm):
             'business_type': forms.RadioSelect(attrs={
                 'class': 'form-check-input me-1',
                 'style': 'margin-right: 10px;'
-            })
+            }),
+            'pro_status': forms.Select(attrs={'class': 'form-select'})
         }
 
 class PropertyLocationForm(forms.ModelForm):

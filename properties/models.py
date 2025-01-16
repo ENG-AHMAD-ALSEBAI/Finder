@@ -20,6 +20,11 @@ class Property(models.Model):
         ('private', 'I am a private seller'),
     ]
 
+    STATUS_CHOICES = [
+        ('published', 'Published'),
+        ('archived', 'Archived'),
+    ]
+    
     # Primary Key
     id_property = models.AutoField(primary_key=True)
     
@@ -31,6 +36,7 @@ class Property(models.Model):
     category = models.CharField(max_length=10, choices=CATEGORY_CHOICES, default='rent')
     property_type = models.CharField(max_length=20, choices=PROPERTY_TYPE_CHOICES, default='apartment')
     business_type = models.CharField(max_length=20, choices=BUSINESS_TYPE_CHOICES, default='private')
+    pro_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='published')
     
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)

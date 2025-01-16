@@ -196,19 +196,12 @@
             <div class="card card-body border-0 shadow-sm pb-1 me-lg-1">
               <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4">
                 {% if user.photo %}
-                    <img class="rounded-circle" src="{{ user.photo.url }}" width="48" alt="{{ user.full_name }}">
+                    <img class="rounded-circle" src="{{ user.photo.url }}" width="48" alt="{{ user.first_name }}">
                 {% else %}
-                    <img class="rounded-circle" src="{% static 'img/avatars/03.jpg' %}" width="48" alt="{{ user.full_name }}">
+                    <img class="rounded-circle" src="{% static 'img/avatars/default.jpg' %}" width="48" alt="Default Profile">
                 {% endif %}
                 <div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
-                  <h2 class="fs-lg mb-0">{{ user.full_name }}</h2>
-                  <span class="star-rating">
-                    <i class="star-rating-icon fi-star-filled active"></i>
-                    <i class="star-rating-icon fi-star-filled active"></i>
-                    <i class="star-rating-icon fi-star-filled active"></i>
-                    <i class="star-rating-icon fi-star-filled active"></i>
-                    <i class="star-rating-icon fi-star-filled active"></i>
-                  </span>
+                  <h2 class="fs-lg mb-0">{{ user.first_name }} {{ user.last_name }}</h2>
                   <ul class="list-unstyled fs-sm mt-3 mb-0">
                     <li><a class="nav-link fw-normal p-0" href="tel:{{ user.phone_number }}"><i class="fi-phone opacity-60 me-2"></i>{{ user.phone_number }}</a></li>
                     <li><a class="nav-link fw-normal p-0" href="mailto:{{ user.email }}"><i class="fi-mail opacity-60 me-2"></i>{{ user.email }}</a></li>
@@ -223,14 +216,20 @@
           <!-- Content-->
           <div class="col-lg-8 col-md-7 mb-5">
             <div class="d-flex align-items-center justify-content-between mb-3">
-              <h1 class="h2 mb-0">My Properties</h1><a class="fw-bold text-decoration-none" href="#"><i class="fi-trash mt-n1 me-2"></i>Delete all</a>
+              <h1 class="h2 mb-0">My Properties</h1>
+              <form method="POST" onsubmit="return confirmDeleteAll()" class="d-inline">
+                {% csrf_token %}
+                <input type="hidden" name="delete_all" value="true">
+                <button type="submit" class="btn btn-danger">
+                  <i class="fi-trash mt-n1 me-2"></i>Delete all
+                </button>
+              </form>
             </div>
             <p class="pt-1 mb-4">Here you can see your property offers and edit them easily.</p>
             <!-- Nav tabs-->
             <ul class="nav nav-tabs border-bottom mb-4" role="tablist">
-              <li class="nav-item mb-3"><a class="nav-link active" href="#" role="tab" aria-selected="true"><i class="fi-file fs-base me-2"></i>Published</a></li>
-              <li class="nav-item mb-3"><a class="nav-link" href="#" role="tab" aria-selected="false"><i class="fi-file-clean fs-base me-2"></i>Drafts</a></li>
-              <li class="nav-item mb-3"><a class="nav-link" href="#" role="tab" aria-selected="false"><i class="fi-archive fs-base me-2"></i>Archived</a></li>
+              <li class="nav-item mb-3"><a class="nav-link active" href="{% url 'properties:account_properties' %}" role="tab" aria-selected="true"><i class="fi-file fs-base me-2"></i>Published</a></li>
+              <li class="nav-item mb-3"><a class="nav-link" href="{% url 'properties:account_properties_archived' %}" role="tab" aria-selected="false"><i class="fi-archive fs-base me-2"></i>Archived</a></li>
             </ul>
             <!-- Property list -->
             {% if properties %}
@@ -240,7 +239,7 @@
                   {% if property.propertyphoto.main_photo %}
                     <img src="{{ property.propertyphoto.main_photo.url }}" alt="{{ property.title }}" class="img-fluid rounded" style="max-height: 200px; width: auto;">
                   {% endif %}
-                  <a class="stretched-link" href="{% url 'properties:single_v1' %}"></a>
+                  <a class="stretched-link" href="{% url 'properties:single_v1' property.id_property %}"></a>
                   {% if property.category == 'rent' %}
                     <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">FOR RENT</span></div>
                   {% else %}
@@ -249,7 +248,7 @@
                 </div>
                 <div class="card-body position-relative pb-3">
                   <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">{{ property.property_type }}</h4>
-                  <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="{% url 'properties:single_v1' %}">{{ property.title }}</a></h3>
+                  <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="{% url 'properties:single_v1' property.id_property %}">{{ property.title }}</a></h3>
                   {% if property.propertylocation %}
                     <p class="mb-2 fs-sm text-muted">{{ property.propertylocation.address }}</p>
                   {% endif %}
@@ -335,5 +334,10 @@
     <script src="{% static 'vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
     <!-- Main theme script-->
     <script src="{% static 'js/theme.min.js' %}"></script>
+    <script>
+      function confirmDeleteAll() {
+        return confirm('Are you sure you want to delete all your properties? This action cannot be undone.');
+      }
+    </script>
   </body>
 </html>
