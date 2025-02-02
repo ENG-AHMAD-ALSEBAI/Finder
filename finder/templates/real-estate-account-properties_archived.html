@@ -1,0 +1,343 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Finder | Real Estate | Account My Properties</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+    <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="mask-icon" color="#5bbad5" href="{% static 'safari-pinned-tab.svg' %}">
+    <meta name="msapplication-TileColor" content="#766df4">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Page loading styles-->
+    <style>
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #666276;;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        border: .15em solid #bbb7c5;
+        border-right-color: transparent;
+        border-radius: 50%;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      @-webkit-keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          var preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 2000);
+        };
+      })();
+      
+    </script>
+    <!-- Vendor Styles-->
+    <link rel="stylesheet" media="screen" href="{% static 'vendor/simplebar/dist/simplebar.min.css' %}"/>
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="{% static 'css/theme.min.css' %}">
+  </head>
+  <!-- Body-->
+  <body>
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>Loading...</span>
+      </div>
+    </div>
+    <main class="page-wrapper">
+         <!-- Navbar-->
+         <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-scroll-header>
+          <meta charset="utf-8">
+      <title>Finder | Real Estate | 404 Not Found</title>
+          <div class="container"><a class="navbar-brand me-3 me-xl-4" href="{% url 'pages:home' %}"><img class="d-block" src="{% static 'img/logo/logo-dark.svg' %}" width="116" alt="Finder"></a>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="dropdown d-none d-lg-block order-lg-3 my-n2 me-3"><a class="d-block py-2" href="{{ user.photo.url }}"><img class="rounded-circle" src="{{ user.photo.url }}" width="40" alt="Annette Black"></a>
+              <div class="dropdown-menu dropdown-menu-end">
+                <div class="d-flex align-items-start border-bottom px-3 py-1 mb-2" style="width: 16rem;"><img class="rounded-circle" src="{% static 'img/avatars/03.jpg' %}" width="48" alt="Annette Black">
+                  <div class="ps-2">
+                    <h6 class="fs-base mb-0">{{user.full_name}}</h6><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+                    <div class="fs-xs py-2">{{user.phone_number}}<br>{{user.email}}</div>
+                  </div>
+                </div><a class="dropdown-item" href="{% url 'users:account_info' %}"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="{% url 'users:security' %}"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a><a class="dropdown-item" href="{% url 'properties:account_properties' %}"><i class="fi-home opacity-60 me-2"></i>My Properties</a><a class="dropdown-item" href="{% url 'wishlist:account_wishlist' %}"><i class="fi-heart opacity-60 me-2"></i>Wishlist</a><a class="dropdown-item" href="{% url 'reviews:account_reviews' %}"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="dropdown-item" href="{% url 'notifications:account_notifications' %}"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
+                <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'pages:help_center' %}">Help</a><a class="dropdown-item" href="{% url 'users:signin' %}">Sign Out</a>
+              </div>
+            </div><a class="btn btn-primary btn-sm ms-2 order-lg-3" href="{% url 'properties:add_property' %}"><i class="fi-plus me-2"></i>Add<span class='d-none d-sm-inline'> property</span></a>
+            <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+              <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
+                <!-- Demos switcher-->
+              
+                <!-- Menu items-->
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'pages:home' %}">Home v.1</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalog</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'properties:catalog_rent' %}">Property for Rent</a></li>
+                    <li><a class="dropdown-item" href="{% url 'properties:catalog_sale' %}">Property for Sale</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vendor</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'properties:add_property' %}">Add Property</a></li>
+                    <li><a class="dropdown-item" href="{% url 'properties:property_promotion' %}">Property Promotion</a></li>
+                    <li><a class="dropdown-item" href="{% url 'properties:vendor_properties' %}">Vendor Page: Properties</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'pages:about' %}">About</a></li>
+                    <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'blog:blog' %}">Blog Grid</a></li>
+                        <li><a class="dropdown-item" href="{% url 'blog:blog_single' %}">Single Post</a></li>
+                      </ul>
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'pages:contacts' %}">Contacts</a></li>
+                    <li><a class="dropdown-item" href="{% url 'pages:help_center' %}">Help Center</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown d-lg-none"><a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="rounded-circle me-2" src="{{ user.photo.url }}" width="30" alt="Annette Black">Annette Black</a>
+                  <div class="dropdown-menu">
+                    <div class="ps-3"><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+                      <div class="fs-xs py-2">(302) 555-0107<br>annette_black@email.com</div>
+                    </div><a class="dropdown-item" href="{% url 'users:account_info' %}"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="{% url 'users:security' %}"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a><a class="dropdown-item" href="{% url 'properties:account_properties' %}"><i class="fi-home opacity-60 me-2"></i>My Properties</a><a class="dropdown-item" href="{% url 'wishlist:account_wishlist' %}"><i class="fi-heart opacity-60 me-2"></i>Wishlist</a><a class="dropdown-item" href="{% url 'reviews:account_reviews' %}"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="dropdown-item" href="{% url 'notifications:account_notifications' %}"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'pages:help_center' %}">Help</a><a class="dropdown-item" href="{% url 'users:signin' %}">Sign Out</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </header>
+      <!-- Page content-->
+      <div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
+        <!-- Breadcrumb-->
+        <nav class="mb-4 pt-md-3" aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="real-estate-account-info.html">Account</a></li>
+            <li class="breadcrumb-item active" aria-current="page">My Properties</li>
+          </ol>
+        </nav>
+        <!-- Page content-->
+        <div class="row">
+          <!-- Sidebar-->
+          <aside class="col-lg-4 col-md-5 pe-xl-4 mb-5">
+            <!-- Account nav-->
+            <div class="card card-body border-0 shadow-sm pb-1 me-lg-1">
+              <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4">
+                {% if user.photo %}
+                    <img class="rounded-circle" src="{{ user.photo.url }}" width="48" alt="{{ user.first_name }}">
+                {% else %}
+                    <img class="rounded-circle" src="{% static 'img/avatars/default.jpg' %}" width="48" alt="Default Profile">
+                {% endif %}
+                <div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
+                  <h2 class="fs-lg mb-0">{{ user.first_name }} {{ user.last_name }}</h2>
+                  <ul class="list-unstyled fs-sm mt-3 mb-0">
+                    <li><a class="nav-link fw-normal p-0" href="tel:{{ user.phone_number }}"><i class="fi-phone opacity-60 me-2"></i>{{ user.phone_number }}</a></li>
+                    <li><a class="nav-link fw-normal p-0" href="mailto:{{ user.email }}"><i class="fi-mail opacity-60 me-2"></i>{{ user.email }}</a></li>
+                  </ul>
+                </div>
+              </div><a class="btn btn-primary btn-lg w-100 mb-3" href="{% url 'properties:add_property' %}"><i class="fi-plus me-2"></i>Add property</a><a class="btn btn-outline-secondary d-block d-md-none w-100 mb-3" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Menu</a>
+              <div class="collapse d-md-block mt-3" id="account-nav">
+                <div class="card-nav"><a class="card-nav-link " href="{% url 'users:account_info' %}"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="card-nav-link " href="{% url 'users:security' %}"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a><a class="card-nav-link active" href="{% url 'properties:account_properties_archived' %}"><i class="fi-home opacity-60 me-2"></i>My Archived Properties</a><a class="card-nav-link" href="{% url 'wishlist:account_wishlist' %}"><i class="fi-heart opacity-60 me-2"></i>Wishlist</a><a class="card-nav-link" href="{% url 'reviews:account_reviews' %}"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="card-nav-link" href="{% url 'notifications:account_notifications' %}"><i class="fi-bell opacity-60 me-2"></i>Notifications</a><a class="card-nav-link" href="{% url 'pages:help_center' %}"><i class="fi-help opacity-60 me-2"></i>Help</a><a class="card-nav-link" href="{% url 'users:signin' %}"><i class="fi-logout opacity-60 me-2"></i>Sign Out</a></div>
+              </div>
+            </div>
+          </aside>
+          <!-- Content-->
+          <div class="col-lg-8 col-md-7 mb-5">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h1 class="h2 mb-0">My  <span  style="color: #fd5631"> Archived  </span> Properties</h1>
+              <form method="POST" onsubmit="return confirmDeleteAll()" class="d-inline">
+                {% csrf_token %}
+                <input type="hidden" name="delete_all" value="true">
+                <button type="submit" class="btn btn-danger">
+                  <i class="fi-trash mt-n1 me-2"></i>Delete all
+                </button>
+              </form>
+            </div>
+            <p class="pt-1 mb-4">Here you can see your archived property offers and edit them easily.</p>
+            <!-- Nav tabs-->
+            <ul class="nav nav-tabs border-bottom mb-4" role="tablist">
+              <li class="nav-item mb-3"><a class="nav-link" href="{% url 'properties:account_properties' %}" role="tab" aria-selected="false"><i class="fi-file fs-base me-2"></i>Published</a></li>
+              <li class="nav-item mb-3"><a class="nav-link active" href="{% url 'properties:account_properties_archived' %}" role="tab" aria-selected="true"><i class="fi-archive fs-base me-2"></i>Archived</a></li>
+            </ul>
+            <!-- Property list -->
+            {% if properties %}
+              {% for property in properties %}
+              <div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
+                <div class="card-img-top position-relative">
+                  {% if property.propertyphoto.main_photo %}
+                    <img src="{{ property.propertyphoto.main_photo.url }}" alt="{{ property.title }}" class="img-fluid rounded" style="max-height: 200px; width: auto;">
+                  {% endif %}
+                  <a class="stretched-link" href="{% url 'properties:single_v1' property.id_property %}"></a>
+                  {% if property.category == 'rent' %}
+                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">FOR RENT</span></div>
+                  {% else %}
+                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info mb-1">FOR SALE</span></div>
+                  {% endif %}
+                </div>
+                <div class="card-body position-relative pb-3">
+                  <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">{{ property.property_type }}</h4>
+                  <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="{% url 'properties:single_v1' property.id_property %}">{{ property.title }}</a></h3>
+                  {% if property.propertylocation %}
+                    <p class="mb-2 fs-sm text-muted">{{ property.propertylocation.address }}</p>
+                  {% endif %}
+                  {% if property.propertyprice %}
+                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${{ property.propertyprice.price }}</div>
+                  {% endif %}
+                  
+                  <div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
+                    {% if property.propertydetails %}
+                      <span class="d-inline-block me-4 fs-sm">{{ property.propertydetails.bedrooms }} <i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span>
+                      <span class="d-inline-block me-4 fs-sm">{{ property.propertydetails.bathrooms }} <i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span>
+                      <span class="d-inline-block fs-sm">{{ property.propertydetails.area }} sq.m <i class="fi-ruler ms-1 mt-n1 fs-lg text-muted"></i></span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            {% else %}
+              <div class="alert alert-info" role="alert">
+                You haven't added any archived properties yet. Click "Add property" to get started!
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer-->
+    <footer class="footer bg-secondary pt-5">
+      <div class="container pt-lg-4 pb-4">
+        <!-- Links-->
+        <div class="row mb-5 pb-md-3 pb-lg-4">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="d-flex flex-sm-row flex-column justify-content-between mx-n2">
+              <div class="mb-sm-0 mb-4 px-2"><a class="d-inline-block mb-4" href="{url 'home'}"><img src="{% static 'img/logo/logo-dark.svg' %}" width="116" alt="logo"></a>
+                <ul class="nav flex-column mb-sm-4 mb-2">
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="mailto:example@email.com"><i class="fi-mail mt-n1 me-2 align-middle opacity-70"></i>example@email.com</a></li>
+                  <li class="nav-item"><a class="nav-link p-0 fw-normal" href="tel:4065550120"><i class="fi-device-mobile mt-n1 me-2 align-middle opacity-70"></i>(406) 555-0120</a></li>
+                </ul>
+                <div class="pt-2"><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-viber"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-telegram"></i></a></div>
+              </div>
+              <div class="mb-sm-0 mb-4 px-2">
+                <h4 class="h5">Quick Links</h4>
+                <ul class="nav flex-column">
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Buy a property</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Sell a property</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Rent a property</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Сalculate  your property</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Top offers</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Top cities</a></li>
+                </ul>
+              </div>
+              <div class="px-2">
+                <h4 class="h5">About</h4>
+                <ul class="nav flex-column">
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">About Us</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Our agents</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Help &amp; support</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Contacts</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">News</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Banner-->
+        <div class="bg-dark rounded-3">
+          <div class="col-xxl-10 col-md-11 col-10 d-flex flex-md-row flex-column-reverse align-items-md-end align-items-center mx-auto px-0"><img class="flex-shrink-0 mt-md-n5 me-md-5" src="{% static 'img/real-estate/illustrations/mobile.svg' %}" width="240" alt="Finder mobile app">
+            <div class="align-self-center d-flex flex-lg-row flex-column align-items-lg-center pt-md-3 pt-5 ps-xxl-4 text-md-start text-center">
+              <div class="me-md-5">
+                <h4 class="text-light">Download Our App</h4>
+                <p class="mb-lg-0 text-light">Find everything you need for buying, selling &amp; renting property in our new Finder App!</p>
+              </div>
+              <div class="flex-shrink-0"><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-viber"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-telegram"></i></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/simplebar/dist/simplebar.min.js' %}"></script>
+    <script src="{% static 'vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+    <!-- Main theme script-->
+    <script src="{% static 'js/theme.min.js' %}"></script>
+    <script>
+      function confirmDeleteAll() {
+        return confirm('Are you sure you want to delete all your properties? This action cannot be undone.');
+      }
+    </script>
+  </body>
+</html>

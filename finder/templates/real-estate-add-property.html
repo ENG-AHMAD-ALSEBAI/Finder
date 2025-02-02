@@ -1,0 +1,667 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Finder | Real Estate | Add Property</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+    <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{%static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="mask-icon" color="#5bbad5" href="{% static 'safari-pinned-tab.svg' %}">
+    <meta name="msapplication-TileColor" content="#766df4">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Page loading styles-->
+    <style>
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #666276;;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        border: .15em solid #bbb7c5;
+        border-right-color: transparent;
+        border-radius: 50%;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      @-webkit-keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          var preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 2000);
+        };
+      })();
+      
+    </script>
+    <!-- Vendor Styles-->
+    <link rel="stylesheet" media="screen" href="{% static 'vendor/simplebar/dist/simplebar.min.css' %}"/>
+    <link rel="stylesheet" media="screen" href="{% static 'vendor/leaflet/dist/leaflet.css' %}"/>
+    <link rel="stylesheet" media="screen" href="{% static 'vendor/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css' %}"/>
+    <link rel="stylesheet" media="screen" href="{% static 'vendor/filepond/dist/filepond.min.css' %}"/>
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="{% static 'css/theme.min.css' %}">
+    <!-- أضف هذا في قسم head من الصفحة -->
+    <style>
+        .form-check-group {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-check-inline {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+        }
+        
+        .form-check-input {
+            margin-right: 0.5rem;
+        }
+        
+        .form-check-label {
+            margin-bottom: 0;
+        }
+    </style>
+    <!-- أضف هذا في قسم style -->
+    <style>
+        /* الأنماط السابقة */
+        
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-check-input {
+            margin-right: 0.5rem;
+        }
+        
+        .form-check-label {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+  </head>
+  <!-- Body-->
+  <body>
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>Loading...</span>
+      </div>
+    </div>
+    <main class="page-wrapper">
+          <!-- Navbar-->
+          <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-scroll-header>
+            <meta charset="utf-8">
+        <title>Finder | Real Estate | 404 Not Found</title>
+            <div class="container"><a class="navbar-brand me-3 me-xl-4" href="{% url 'pages:home' %}"><img class="d-block" src="{% static 'img/logo/logo-dark.svg' %}" width="116" alt="Finder"></a>
+              <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+              <div class="dropdown d-none d-lg-block order-lg-3 my-n2 me-3"><a class="d-block py-2" href="{% url 'users:account_info' %}"><img class="rounded-circle" src="{% static 'img/avatars/30.jpg' %}" width="40" alt="Annette Black"></a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <div class="d-flex align-items-start border-bottom px-3 py-1 mb-2" style="width: 16rem;"><img class="rounded-circle" src="{% static 'img/avatars/03.jpg' %}" width="48" alt="Annette Black">
+                    <div class="ps-2">
+                      <h6 class="fs-base mb-0">Annette Black</h6><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+                      <div class="fs-xs py-2">(302) 555-0107<br>annette_black@email.com</div>
+                    </div>
+                  </div><a class="dropdown-item" href="{% url 'users:account_info' %}"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="{% url 'users:security' %}"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a><a class="dropdown-item" href="{% url 'properties:account_properties' %}"><i class="fi-home opacity-60 me-2"></i>My Properties</a><a class="dropdown-item" href="{% url 'wishlist:account_wishlist' %}"><i class="fi-heart opacity-60 me-2"></i>Wishlist</a><a class="dropdown-item" href="{% url 'reviews:account_reviews' %}"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="dropdown-item" href="{% url 'notifications:account_notifications' %}"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'pages:help_center' %}">Help</a><a class="dropdown-item" href="{% url 'users:signin' %}">Sign Out</a>
+                </div>
+              </div><a class="btn btn-primary btn-sm ms-2 order-lg-3" href="{% url 'properties:add_property' %}"><i class="fi-plus me-2"></i>Add<span class='d-none d-sm-inline'> property</span></a>
+              <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+                <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
+                  <!-- Demos switcher-->
+                
+                  <!-- Menu items-->
+                  <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'pages:home' %}">Home v.1</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalog</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'properties:catalog_rent' %}">Property for Rent</a></li>
+                      <li><a class="dropdown-item" href="{% url 'properties:catalog_sale' %}">Property for Sale</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vendor</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'properties:add_property' %}">Add Property</a></li>
+                      <li><a class="dropdown-item" href="{% url 'properties:property_promotion' %}">Property Promotion</a></li>
+                      <li><a class="dropdown-item" href="{% url 'properties:vendor_properties' %}">Vendor Page: Properties</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'pages:about' %}">About</a></li>
+                      <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{% url 'blog:blog' %}">Blog Grid</a></li>
+                          <li><a class="dropdown-item" href="{% url 'blog:blog_single' %}">Single Post</a></li>
+                        </ul>
+                      </li>
+                      <li><a class="dropdown-item" href="{% url 'pages:contacts' %}">Contacts</a></li>
+                      <li><a class="dropdown-item" href="{% url 'pages:help_center' %}">Help Center</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown d-lg-none"><a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="rounded-circle me-2" src="{% static 'img/avatars/30.jpg' %}" width="30" alt="Annette Black">Annette Black</a>
+                    <div class="dropdown-menu">
+                      <div class="ps-3"><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+                        <div class="fs-xs py-2">(302) 555-0107<br>annette_black@email.com</div>
+                      </div><a class="dropdown-item" href="{% url 'users:account_info' %}"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="{% url 'users:security' %}"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a><a class="dropdown-item" href="{% url 'properties:account_properties' %}"><i class="fi-home opacity-60 me-2"></i>My Properties</a><a class="dropdown-item" href="{% url 'wishlist:account_wishlist' %}"><i class="fi-heart opacity-60 me-2"></i>Wishlist</a><a class="dropdown-item" href="{% url 'reviews:account_reviews' %}"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="dropdown-item" href="{% url 'notifications:account_notifications' %}"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
+                      <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'pages:help_center' %}">Help</a><a class="dropdown-item" href="{% url 'users:signin' %}">Sign Out</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </header>
+          
+      <div class="modal fade" id="preview-modal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen" role="document">
+          <div class="modal-content">
+            <div class="modal-header d-block d-sm-flex">
+              <h3 class="h5 text-muted fw-normal modal-title d-none d-sm-block">Property preview</h3>
+              <div class="d-flex align-items-center"><a class="btn btn-primary btn-sm me-4" href="{% url 'properties:property_promotion' %}">Save and continue</a><span class="fs-xs text-muted ms-auto me-2">[ESC]</span>
+                <button class="btn-close ms-0" type="button" data-bs-dismiss="modal"></button>
+              </div>
+            </div>
+            <div class="modal-body p-0">
+              <div class="container mt-2 mt-sm-0 py-4 py-sm-5">
+                <h1 class="h2 mb-2">Pine Apartments</h1>
+                <p class="mb-2 pb-1 fs-lg">28 Jackson Ave Long Island City, NY 67234</p>
+                <ul class="d-flex mb-4 list-unstyled">
+                  <li class="me-3 pe-3 border-end"><b class="me-1">4</b><i class="fi-bed mt-n1 lead align-middle text-muted"></i></li>
+                  <li class="me-3 pe-3 border-end"><b class="me-1">2</b><i class="fi-bath mt-n1 lead align-middle text-muted"></i></li>
+                  <li class="me-3 pe-3 border-end"><b class="me-1">2</b><i class="fi-car mt-n1 lead align-middle text-muted"></i></li>
+                  <li><b>56 </b>sq.m</li>
+                </ul>
+                <div class="overflow-auto pb-3 px-2 mx-n2 mb-4" data-simplebar>
+                  <div class="row g-2 g-md-3" style="min-width: 30rem;">
+                    <div class="col-8"><img class="rounded rounded-md-3" src="{% static 'img/real-estate/single/01.jpg' %}" alt="Gallery thumbnail"></div>
+                    <div class="col-4"><img class="rounded rounded-md-3 mb-2 mb-md-3" src="{% static 'img/real-estate/single/02.jpg' %}" alt="Gallery thumbnail"><img class="rounded rounded-md-3" src="{% static 'img/real-estate/single/03.jpg' %}" alt="Gallery thumbnail"></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-7 mb-md-0 mb-4"><span class="badge bg-success me-2 mb-3">Verified</span><span class="badge bg-info me-2 mb-3">New</span>
+                    <h2 class="h3 mb-4 pb-4 border-bottom">$2,000<span class="d-inline-block ms-1 fs-base fw-normal text-body">/month</span></h2>
+                    <!-- Overview-->
+                    <div class="mb-4 pb-md-3">
+                      <h3 class="h4">Overview</h3>
+                      <p class="mb-1">Lorem tincidunt lectus vitae id vulputate diam quam. Imperdiet non scelerisque turpis sed etiam ultricies. Blandit mollis dignissim egestas consectetur porttitor. Vulputate dolor pretium, dignissim eu augue sit ut convallis. Lectus est, magna urna feugiat sed ultricies sed in lacinia. Fusce potenti sit id pharetra vel ornare. Vestibulum sed tellus ullamcorper arcu.</p>
+                      <div class="collapse" id="seeMoreOverview">
+                        <p class="mb-1">Asperiores eos molestias, aspernatur assumenda vel corporis ex, magni excepturi totam exercitationem quia inventore quod amet labore impedit quae distinctio? Officiis blanditiis consequatur alias, atque, sed est incidunt accusamus repudiandae tempora repellendus obcaecati delectus ducimus inventore tempore harum numquam autem eligendi culpa.</p>
+                      </div><a class="collapse-label collapsed" href="#seeMoreOverview" data-bs-toggle="collapse" data-bs-label-collapsed="Show more" data-bs-label-expanded="Show less" role="button" aria-expanded="false" aria-controls="seeMoreOverview"></a>
+                    </div>
+                    <!-- Property Details-->
+                    <div class="mb-4 pb-md-3">
+                      <h3 class="h4">Property Details</h3>
+                      <ul class="list-unstyled mb-0">
+                        <li><b>Type: </b>apartment</li>
+                        <li><b>Apartment area: </b>56 sq.m</li>
+                        <li><b>Built: </b>2015</li>
+                        <li><b>Bedrooms: </b>4</li>
+                        <li><b>Bathrooms: </b>2</li>
+                        <li><b>Parking places: </b>2</li>
+                        <li><b>Pets allowed: </b>No</li>
+                      </ul>
+                    </div>
+                    <!-- Amenities-->
+                    <div class="mb-sm-3">
+                      <h3 class="h4">Amenities</h3>
+                      <ul class="list-unstyled row row-cols-lg-3 row-cols-md-2 row-cols-1 gy-1 mb-1 text-nowrap">
+                        <li class="col"><i class="fi-wifi mt-n1 me-2 fs-lg align-middle"></i>WiFi</li>
+                        <li class="col"><i class="fi-thermometer mt-n1 me-2 fs-lg align-middle"></i>Heating</li>
+                        <li class="col"><i class="fi-dish mt-n1 me-2 fs-lg align-middle"></i>Dishwasher</li>
+                        <li class="col"><i class="fi-parking mt-n1 me-2 fs-lg align-middle"></i>Parking place</li>
+                        <li class="col"><i class="fi-snowflake mt-n1 me-2 fs-lg align-middle"></i>Air conditioning</li>
+                        <li class="col"><i class="fi-iron mt-n1 me-2 fs-lg align-middle"></i>Iron</li>
+                        <li class="col"><i class="fi-tv mt-n1 me-2 fs-lg align-middle"></i>TV</li>
+                        <li class="col"><i class="fi-laundry mt-n1 me-2 fs-lg align-middle"></i>Laundry</li>
+                        <li class="col"><i class="fi-cctv mt-n1 me-2 fs-lg align-middle"></i>Security cameras</li>
+                      </ul>
+                      <div class="collapse" id="seeMoreAmenities">
+                        <ul class="list-unstyled row row-cols-lg-3 row-cols-md-2 row-cols-1 gy-1 mb-1 text-nowrap">
+                          <li class="col"><i class="fi-no-smoke mt-n1 me-2 fs-lg align-middle"></i>No smocking</li>
+                          <li class="col"><i class="fi-pet mt-n1 me-2 fs-lg align-middle"></i>Cats</li>
+                          <li class="col"><i class="fi-swimming-pool mt-n1 me-2 fs-lg align-middle"></i>Swimming pool</li>
+                          <li class="col"><i class="fi-double-bed mt-n1 me-2 fs-lg align-middle"></i>Double bed</li>
+                          <li class="col"><i class="fi-bed mt-n1 me-2 fs-lg align-middle"></i>Single bed</li>
+                        </ul>
+                      </div><a class="collapse-label collapsed" href="#seeMoreAmenities" data-bs-toggle="collapse" data-bs-label-collapsed="Show more" data-bs-label-expanded="Show less" role="button" aria-expanded="false" aria-controls="seeMoreAmenities"></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Page container-->
+      <div class="container mt-5 mb-md-4 py-5">
+        <div class="row">
+          <!-- Page content-->
+          <div class="col-lg-8">
+            <!-- Breadcrumb-->
+            <nav class="mb-3 pt-md-3" aria-label="Breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'pages:home' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add property</li>
+              </ol>
+            </nav>
+            <!-- Title-->
+            <div class="mb-4">
+              <h1 class="h2 mb-0">Add property</h1>
+              <div class="d-lg-none pt-3 mb-2">65% content filled</div>
+              <div class="progress d-lg-none mb-4" style="height: .25rem;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <!-- Main Form -->
+            <form method="POST" action="{% url 'properties:add_property' %}" enctype="multipart/form-data">
+              {% csrf_token %}
+              
+              {% if messages %}
+              <div class="alert alert-danger">
+                  {% for message in messages %}
+                      {{ message }}
+                  {% endfor %}
+              </div>
+              {% endif %}
+              
+              <!-- Basic info section -->
+              <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info">
+                <h2 class="h4 mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Basic info</h2>
+                
+                <div class="mb-3">
+                  <label class="form-label">Title <span class="text-danger">*</span></label>
+                  {{ property_form.title }}
+                  {% if property_form.title.errors %}
+                  <div class="invalid-feedback d-block">
+                      {{ property_form.title.errors }}
+                  </div>
+                  {% endif %}
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label">Category <span class="text-danger">*</span></label>
+                    {{ property_form.category }}
+                    {% if property_form.category.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ property_form.category.errors }}
+                    </div>
+                    {% endif %}
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label">Property type <span class="text-danger">*</span></label>
+                    {{ property_form.property_type }}
+                    {% if property_form.property_type.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ property_form.property_type.errors }}
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <!-- Business Type section -->
+                <div class="mb-4">
+                    <label class="form-label d-block fw-bold mb-2 pb-1">Business Type</label>
+                    <div class="form-check-group">
+                        {% for radio in property_form.business_type %}
+                        <div class="form-check form-check-inline">
+                            {{ radio.tag }}
+                            <label class="form-check-label" for="{{ radio.id_for_label }}">
+                                {{ radio.choice_label }}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+              </section>
+
+              <!-- Location section -->
+              <section class="card card-body border-0 shadow-sm p-4 mb-4" id="location">
+                <h2 class="h4 mb-4"><i class="fi-map-pin text-primary fs-5 mt-n1 me-2"></i>Location</h2>
+                
+                <div class="row">
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label">Country <span class="text-danger">*</span></label>
+                    {{ location_form.country }}
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label">City <span class="text-danger">*</span></label>
+                    {{ location_form.city }}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-8 mb-3">
+                    <label class="form-label">District <span class="text-danger">*</span></label>
+                    {{ location_form.district }}
+                  </div>
+                  <div class="col-sm-4 mb-3">
+                    <label class="form-label">Zip code <span class="text-danger">*</span></label>
+                    {{ location_form.zip_code }}
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Address <span class="text-danger">*</span></label>
+                  {{ location_form.address }}
+                </div>
+              </section>
+
+              <!-- Property details section -->
+              <section class="card card-body border-0 shadow-sm p-4 mb-4" id="details">
+                <h2 class="h4 mb-4"><i class="fi-edit text-primary fs-5 mt-n1 me-2"></i>Property details</h2>
+                
+                <div class="mb-4">
+                  <label class="form-label">Total area (sq.m)</label>
+                  {{ details_form.area }}
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label">Bedrooms</label>
+                  {{ details_form.bedrooms }}
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label">Bathrooms</label>
+                  {{ details_form.bathrooms }}
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label">Parking spots</label>
+                  {{ details_form.parking }}
+                </div>
+
+                <!-- في قسم Property details -->
+                <div class="mb-4">
+                    <label class="form-label d-block fw-bold mb-2 pb-1">Amenities</label>
+                    <div class="row">
+                        {% for checkbox in details_form.amenities %}
+                        <div class="col-sm-4 mb-2">
+                            <div class="form-check">
+                                {{ checkbox.tag }}
+                                <label class="form-check-label" for="{{ checkbox.id_for_label }}">
+                                    {{ checkbox.choice_label }}
+                                </label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label">Description</label>
+                  {{ details_form.description }}
+                </div>
+              </section>
+
+              <!-- Price section -->
+              <section class="card card-body border-0 shadow-sm p-4 mb-4" id="price">
+                <h2 class="h4 mb-4"><i class="fi-cash text-primary fs-5 mt-n1 me-2"></i>Price</h2>
+                
+                <div class="d-sm-flex">
+                  <div class="mb-2 me-2">
+                    <label class="form-label">Currency</label>
+                    {{ price_form.price_currency }}
+                  </div>
+                  <div class="mb-2 me-2 w-100">
+                    <label class="form-label">Price</label>
+                    {{ price_form.price }}
+                  </div>
+                  <div class="mb-2">
+                    <label class="form-label">Period</label>
+                    {{ price_form.price_period }}
+                  </div>
+                </div>
+              </section>
+
+              <!-- Photos section -->
+              <section class="card card-body border-0 shadow-sm p-4 mb-4" id="photos">
+                <h2 class="h4 mb-4"><i class="fi-image text-primary fs-5 mt-n1 me-2"></i>Photos</h2>
+                <div class="alert alert-info mb-4" role="alert">
+                  <div class="d-flex">
+                    <i class="fi-alert-circle me-2 me-sm-3"></i>
+                    <p class="fs-sm mb-1">The maximum photo size is 8 MB. Formats: jpeg, jpg, png. Put the main picture first.</p>
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label class="form-label">Main Photo</label>
+                  {{ photo_form.main_photo }}
+                </div>
+                <div class="mb-4">
+                  <label class="form-label">Additional Photos</label>
+                  {{ photo_form.photo_1 }}
+                  {{ photo_form.photo_2 }}
+                  {{ photo_form.photo_3 }}
+                </div>
+              </section>
+
+              <!-- Contacts section -->
+              <section class="card card-body border-0 shadow-sm p-4 mb-4" id="contacts">
+                <h2 class="h4 mb-4"><i class="fi-phone text-primary fs-5 mt-n1 me-2"></i>Contacts</h2>
+                
+                <div class="row">
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label">Name <span class="text-danger">*</span></label>
+                    {{ contacts_form.contact_name }}
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label">Phone <span class="text-danger">*</span></label>
+                    {{ contacts_form.contact_phone }}
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Email <span class="text-danger">*</span></label>
+                  {{ contacts_form.contact_email }}
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Company name</label>
+                  {{ contacts_form.company_name }}
+                </div>
+              </section>
+
+              <!-- Business type-->
+              <div class="row">
+                <div class="col-sm-6 mb-4">
+                  <label class="form-label" for="pr-business-type">Business type<span class="text-danger">*</span></label>
+                  <select class="form-select" id="pr-business-type" name="business_type" required>
+                    <option value="" disabled selected>Choose business type</option>
+                    <option value="business">I am a registered business</option>
+                    <option value="private">I am a private seller</option>
+                  </select>
+                </div>
+                <!-- Publication Status -->
+                <div class="col-sm-6 mb-4">
+                  <label class="form-label" for="pr-status">Property Status<span class="text-danger">*</span></label>
+                  <select class="form-select" id="pr-status" name="pro_status" required>
+                    <option value="" disabled selected>Choose property status</option>
+                    <option value="published">Published</option>
+                    <option value="archived">Archived</option>
+                  </select>
+                  <div class="form-text">Choose whether to publish this property immediately or save it to your archive.</div>
+                </div>
+              </div>
+
+              <!-- Action buttons -->
+              <section class="d-sm-flex justify-content-between pt-2">
+                <a class="btn btn-outline-primary btn-lg d-block mb-3 mb-sm-2" href="#preview-modal" data-bs-toggle="modal">
+                  <i class="fi-eye-on ms-n1 me-2"></i>Preview
+                </a>
+                <button type="submit" class="btn btn-primary btn-lg d-block mb-2">
+                  Save and continue
+                </button>
+              </section>
+            </form>
+
+          </div>
+
+          <!-- Progress sidebar -->
+          <aside class="col-lg-3 offset-lg-1 d-none d-lg-block">
+            <!-- محتوى Sidebar الحالي -->
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    
+<!-- Footer-->
+<footer class="footer bg-secondary pt-5">
+  <div class="container pt-lg-4 pb-4">
+    <!-- Links-->
+    <div class="row mb-5 pb-md-3 pb-lg-4">
+      <div class="col-lg-6 mb-lg-0 mb-4">
+        <div class="d-flex flex-sm-row flex-column justify-content-between mx-n2">
+          <div class="mb-sm-0 mb-4 px-2"><a class="d-inline-block mb-4" href="{url 'home'}"><img src="{% static 'img/logo/logo-dark.svg' %}" width="116" alt="Finder"></a>
+            <ul class="nav flex-column mb-sm-4 mb-2">
+              <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="mailto:example@email.com"><i class="fi-mail mt-n1 me-2 align-middle opacity-70"></i>example@email.com</a></li>
+              <li class="nav-item"><a class="nav-link p-0 fw-normal" href="tel:4065550120"><i class="fi-device-mobile mt-n1 me-2 align-middle opacity-70"></i>(406) 555-0120</a></li>
+            </ul>
+            <div class="pt-2"><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-viber"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-telegram"></i></a></div>
+          </div>
+          <div class="mb-sm-0 mb-4 px-2">
+            <h4 class="h5">Quick Links</h4>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Buy a property</a></li>
+              <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Sell a property</a></li>
+              <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Rent a property</a></li>
+              <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Сalculate  your property</a></li>
+              <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Top offers</a></li>
+              <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Top cities</a></li>
+            </ul>
+          </div>
+          <div class="px-2">
+            <h4 class="h5">About</h4>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">About Us</a></li>
+              <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Our agents</a></li>
+              <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Help &amp; support</a></li>
+              <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Contacts</a></li>
+              <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">News</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-5 col-lg-6 offset-xl-1">
+        <h4 class="h5">Recent Posts</h4>
+        <article class="d-flex align-items-start" style="max-width: 640px;"><a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="{% url 'blog:blog_single' %}"><img class="rounded-3" src="{% static 'img/real-estate/blog/th01.jpg' %}" width="100" alt="Blog post"></a>
+          <div>
+            <h6 class="mb-1 fs-xs fw-normal text-uppercase text-primary">Home improvement</h6>
+            <h5 class="mb-2 fs-base"><a class="nav-link" href="{% url 'blog:blog_single' %}">Your Guide to a Smart Apartment Searching</a></h5>
+            <p class="mb-2 fs-sm">Mi justo, varius vitae cursus ipsum sem massa amet pellentesque. Ipsum enim sit nulla ridiculus semper nam...</p><a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-calendar mt-n1 me-1 fs-sm align-middle opacity-70"></i>Dec 4</a><a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-chat-circle mt-n1 me-1 fs-sm align-middle opacity-70"></i>2 comments</a>
+          </div>
+        </article>
+        <hr class="text-dark opacity-10 my-4">
+        <article class="d-flex align-items-start" style="max-width: 640px;"><a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="{% url 'blog:blog_single' %}"><img class="rounded-3" src="{% static 'img/real-estate/blog/th02.jpg' %}" width="100" alt="Blog post"></a>
+          <div>
+            <h6 class="mb-1 fs-xs fw-normal text-uppercase text-primary">Tips &amp; advice</h6>
+            <h5 class="mb-2 fs-base"><a class="nav-link" href="{% url 'blog:blog_single' %}">Top 10 Ways to Refresh Your Space</a></h5>
+            <p class="mb-2 fs-sm">Volutpat, orci, vitae arcu feugiat vestibulum ultricies nisi, aenean eget. Vitae enim, tellus tempor consequat mi vitae...</p><a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-calendar mt-n1 me-1 fs-sm align-middle opacity-70"></i>Nov 23</a><a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-chat-circle mt-n1 me-1 fs-sm align-middle opacity-70"></i>No comments</a>
+          </div>
+        </article>
+      </div>
+    </div>
+    <!-- Banner-->
+    <div class="bg-dark rounded-3">
+      <div class="col-xxl-10 col-md-11 col-10 d-flex flex-md-row flex-column-reverse align-items-md-end align-items-center mx-auto px-0"><img class="flex-shrink-0 mt-md-n5 me-md-5" src="{% static 'img/real-estate/illustrations/mobile.svg' %}" width="240" alt="Finder mobile app">
+        <div class="align-self-center d-flex flex-lg-row flex-column align-items-lg-center pt-md-3 pt-5 ps-xxl-4 text-md-start text-center">
+          <div class="me-md-5">
+            <h4 class="text-light">Download Our App</h4>
+            <p class="mb-lg-0 text-light">Find everything you need for buying, selling &amp; renting property in our new Finder App!</p>
+          </div>
+          <div class="flex-shrink-0"><a class="btn-market mx-2 ms-sm-0 me-sm-4 mb-3" href="#" role="button"><svg xmlns='http://www.w3.org/2000/svg' width='132' height='34' fill='#fff'><path d='M20.047 15.814c-.031-3.755 3.054-5.581 3.189-5.665-1.751-2.56-4.461-2.916-5.41-2.948-2.272-.241-4.482 1.374-5.639 1.374-1.178 0-2.971-1.343-4.889-1.311-2.47.042-4.795 1.479-6.056 3.724-2.616 4.563-.667 11.277 1.845 14.969 1.261 1.804 2.72 3.829 4.649 3.755 1.876-.073 2.585-1.206 4.847-1.206 2.251 0 2.908 1.206 4.868 1.164 2.022-.032 3.283-1.815 4.503-3.64 1.449-2.067 2.033-4.112 2.053-4.217-.052-.021-3.919-1.511-3.961-6zM16.346 4.779c1.011-1.269 1.699-3 1.511-4.763-1.459.063-3.294 1.018-4.347 2.266-.928 1.101-1.762 2.895-1.553 4.584 1.647.126 3.335-.839 4.388-2.088zm35.509 24.673h-2.627l-1.438-4.553h-5.003l-1.366 4.553h-2.554l4.951-15.494h3.064l4.972 15.494zm-4.492-6.462l-1.303-4.039c-.136-.42-.396-1.385-.771-2.916h-.052l-.73 2.916-1.282 4.039h4.138zm17.219.745c0 1.899-.511 3.399-1.543 4.5-.917.986-2.064 1.469-3.419 1.469-1.47 0-2.522-.524-3.169-1.584v5.864h-2.47V21.951l-.094-3.672h2.168l.136 1.773h.042c.823-1.332 2.074-2.004 3.742-2.004 1.313 0 2.397.524 3.273 1.563.897 1.049 1.334 2.413 1.334 4.123zm-2.512.084c0-1.091-.24-1.983-.73-2.686a2.52 2.52 0 0 0-2.147-1.101c-.605 0-1.157.21-1.657.608a2.81 2.81 0 0 0-.969 1.595c-.073.304-.115.556-.115.755v1.867c0 .808.25 1.5.74 2.056s1.136.839 1.928.839c.928 0 1.657-.367 2.168-1.08.521-.724.782-1.668.782-2.853zm-.584.902h1.21v5.486h-1.21V2.922zM63.155.404h1.209v8.004h-1.209V.404zm6.358 8.015l-.094-.629h-.031c-.375.504-.907.755-1.595.755-.98 0-1.668-.692-1.668-1.615 0-1.353 1.167-2.056 3.19-2.056v-.105c0-.724-.386-1.08-1.136-1.08-.542 0-1.011.136-1.428.409l-.25-.808c.5-.315 1.136-.472 1.876-.472 1.428 0 2.147.755 2.147 2.276v2.025c0 .556.021.986.073 1.311h-1.084v-.01zm-.167-2.738c-1.345 0-2.022.325-2.022 1.112 0 .577.344.86.834.86.615 0 1.188-.472 1.188-1.122v-.85zm6.098 2.864a1.85 1.85 0 0 1-1.72-.976h-.021l-.073.85h-1.032l.042-1.479V.404h1.22V3.73h.021c.365-.608.938-.913 1.741-.913 1.313 0 2.231 1.133 2.231 2.78 0 1.699-1.022 2.948-2.408 2.948zm-.25-4.773c-.698 0-1.334.608-1.334 1.458v.965c0 .755.573 1.374 1.313 1.374.907 0 1.449-.745 1.449-1.93 0-1.112-.563-1.867-1.428-1.867zm4.45-3.368h1.209v8.004h-1.209V.404zm7.807 5.56h-3.638c.021 1.039.709 1.626.542 1.626a4.08 4.08 0 0 0 1.47-.262l.188.85c-.511.231-1.116.336-1.825.336-1.709 0-2.72-1.08-2.72-2.769 0-1.678 1.032-2.948 2.585-2.948 1.386 0 2.272 1.039 2.272 2.612 0 .22-.01.409-.052.556zm-1.105-.871c0-.85-.427-1.448-1.198-1.448-.699 0-1.251.608-1.324 1.448h2.522z'/></svg></a><a class="btn-market mb-3" href="#" role="button"><svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='140' height='34' fill='none'><g fill='#fff'>
+<path d='M45.373 4.152c0 1.003-.241 1.88-.843 2.507a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 41.881.016c.482 0 .963.125 1.445.376s.843.501 1.084.877l-.602.627c-.482-.627-1.084-.877-1.927-.877-.723 0-1.445-.251-1.927.877-.602.501-.843 1.253-.843 2.131s.241 1.629.843 2.131 1.204.877 1.927.877c.843 0 1.445-.251 2.047-.877.361-.376.602-.877.602-1.504h-2.649V3.651h3.492v.501zm5.54-3.134h-3.252V3.4h3.011v.877h-3.011v2.381h3.252v1.003h-4.215V.141h4.215v.877zm3.974 6.643h-.963V1.019h-2.047V.141h5.058v.877h-2.047v6.643zm5.058 0h-.964V1.019h-2.047V.141h4.938v.877h-2.047v6.643h.121zm11.441-1.003a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 74.275.016a3.47 3.47 0 0 1 2.649 1.128c.722.752 1.084 1.629 1.084 2.757s-.361 2.005-1.084 2.757zm-4.576-.627c.482.501 1.204.877 1.927.877s1.445-.251 1.927-.877c.482-.501.843-1.253.843-2.131s-.241-1.629-.843-2.131C75.722 1.268 75 .892 74.277.892s-1.445.251-1.927.877c-.482.501-.843 1.253-.843 2.131s.241 1.629.843 2.131zm6.985 1.629V.141h1.084l3.492 5.891V.141h.963v7.52h-.963L80.176 1.52v6.142h-.843zm-9.034 11.032c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259c0 1.88-1.325 3.259-2.89 3.259zm-11.2-8.523c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259-1.204 3.259-2.77 3.259zm-13.367-6.894v2.256h5.178c-.12 1.039.272 1.626.542 1.626a4.08 4.08 0 0 0 1.47-.262l.188.85c-.511.231-1.116.336-1.825.336-1.709 0-2.72-1.08-2.72-2.769 0-1.678 1.032-2.948 2.585-2.948 1.386 0 2.272 1.039 2.272 2.612 0 .22-.01.409-.052.556zm-1.105-.871c0-.85-.427-1.448-1.198-1.448-.699 0-1.251.608-1.324 1.448h2.522z'/><path d='M45.373 4.152c0 1.003-.241 1.88-.843 2.507a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 41.881.016c.482 0 .963.125 1.445.376s.843.501 1.084.877l-.602.627c-.482-.627-1.084-.877-1.927-.877-.723 0-1.445-.251-1.927.877-.602.501-.843 1.253-.843 2.131s.241 1.629.843 2.131 1.204.877 1.927.877c.843 0 1.445-.251 2.047-.877.361-.376.602-.877.602-1.504h-2.649V3.651h3.492v.501zm5.54-3.134h-3.252V3.4h3.011v.877h-3.011v2.381h3.252v1.003h-4.215V.141h4.215v.877zm3.974 6.643h-.963V1.019h-2.047V.141h5.058v.877h-2.047v6.643zm5.058 0h-.964V1.019h-2.047V.141h4.938v.877h-2.047v6.643h.121zm11.441-1.003a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 74.275.016a3.47 3.47 0 0 1 2.649 1.128c.722.752 1.084 1.629 1.084 2.757s-.361 2.005-1.084 2.757zm-4.576-.627c.482.501 1.204.877 1.927.877s1.445-.251 1.927-.877c.482-.501.843-1.253.843-2.131s-.241-1.629-.843-2.131C75.722 1.268 75 .892 74.277.892s-1.445.251-1.927.877c-.482.501-.843 1.253-.843 2.131s.241 1.629.843 2.131zm6.985 1.629V.141h1.084l3.492 5.891V.141h.963v7.52h-.963L80.176 1.52v6.142h-.843zm-9.034 11.032c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259c0 1.88-1.325 3.259-2.89 3.259zm-11.2-8.523c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259-1.204 3.259-2.77 3.259zm-13.367-6.894v2.256h5.178c-.12 1.039.272 1.626.542 1.626a4.08 4.08 0 0 0 1.47-.262l.188.85c-.511.231-1.116.336-1.825.336-1.709 0-2.72-1.08-2.72-2.769 0-1.678 1.032-2.948 2.585-2.948 1.386 0 2.272 1.039 2.272 2.612 0 .22-.01.409-.052.556zm-1.105-.871c0-.85-.427-1.448-1.198-1.448-.699 0-1.251.608-1.324 1.448h2.522z'/><path d='M19.758 21.326L3.19 30.869c-.914.582-1.714.465-2.285 0l-.114.116.114.116c.571.465 1.371.582 2.285 0l16.568-9.775z'/><path d='M.79 30.869c-.343-.349-.457-.931-.457-1.629v.116c0 .698.229 1.28.571 1.629v-.116H.79zm24.681-12.801l-5.713 3.259.114.116 5.599-3.258c.8-.466 1.143-1.047 1.143-1.629 0 .582-.457 1.047-1.143 1.513z'/><path d='M3.19 2.125l22.281 12.917c.686.466 1.143.931 1.143 1.513 0-.582-.343-1.164-1.143-1.629L3.19 2.008C1.59 1.077.333 1.775.333 3.637v.116c0-1.746 1.257-2.56 2.857-1.629z'/></g><g opacity='.2'><mask id='A' fill='#fff'><use xlink:href='#E'/></mask><use xlink:href='#E' fill='#fff'/><path d='M45.373 4.152c0 1.003-.241 1.88-.843 2.507a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 41.881.016c.482 0 .963.125 1.445.376s.843.501 1.084.877l-.602.627c-.482-.627-1.084-.877-1.927-.877-.723 0-1.445-.251-1.927.877-.602.501-.843 1.253-.843 2.131s.241 1.629.843 2.131 1.204.877 1.927.877c.843 0 1.445-.251 2.047-.877.361-.376.602-.877.602-1.504h-2.649V3.651h3.492v.501zm5.54-3.134h-3.252V3.4h3.011v.877h-3.011v2.381h3.252v1.003h-4.215V.141h4.215v.877zm3.974 6.643h-.963V1.019h-2.047V.141h5.058v.877h-2.047v6.643zm5.058 0h-.964V1.019h-2.047V.141h4.938v.877h-2.047v6.643h.121zm11.441-1.003a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 74.275.016a3.47 3.47 0 0 1 2.649 1.128c.722.752 1.084 1.629 1.084 2.757s-.361 2.005-1.084 2.757zm-4.576-.627c.482.501 1.204.877 1.927.877s1.445-.251 1.927-.877c.482-.501.843-1.253.843-2.131s-.241-1.629-.843-2.131C75.722 1.268 75 .892 74.277.892s-1.445.251-1.927.877c-.482.501-.843 1.253-.843 2.131s.241 1.629.843 2.131zm6.985 1.629V.141h1.084l3.492 5.891V.141h.963v7.52h-.963L80.176 1.52v6.142h-.843zm-9.034 11.032c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259c0 1.88-1.325 3.259-2.89 3.259zm-11.2-8.523c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259-1.204 3.259-2.77 3.259zm-13.367-6.894v2.256h5.178c-.12 1.039.272 1.626.542 1.626a4.08 4.08 0 0 0 1.47-.262l.188.85c-.511.231-1.116.336-1.825.336-1.709 0-2.72-1.08-2.72-2.769 0-1.678 1.032-2.948 2.585-2.948 1.386 0 2.272 1.039 2.272 2.612 0 .22-.01.409-.052.556zm-1.105-.871c0-.85-.427-1.448-1.198-1.448-.699 0-1.251.608-1.324 1.448h2.522z'/></g><g opacity='.2'><mask id='B' fill='#fff'><use xlink:href='#F'/></mask><use xlink:href='#F' fill='#fff'/><path d='M45.373 4.152c0 1.003-.241 1.88-.843 2.507a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 41.881.016c.482 0 .963.125 1.445.376s.843.501 1.084.877l-.602.627c-.482-.627-1.084-.877-1.927-.877-.723 0-1.445-.251-1.927.877-.602.501-.843 1.253-.843 2.131s.241 1.629.843 2.131 1.204.877 1.927.877c.843 0 1.445-.251 2.047-.877.361-.376.602-.877.602-1.504h-2.649V3.651h3.492v.501zm5.54-3.134h-3.252V3.4h3.011v.877h-3.011v2.381h3.252v1.003h-4.215V.141h4.215v.877zm3.974 6.643h-.963V1.019h-2.047V.141h5.058v.877h-2.047v6.643zm5.058 0h-.964V1.019h-2.047V.141h4.938v.877h-2.047v6.643h.121zm11.441-1.003a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 74.275.016a3.47 3.47 0 0 1 2.649 1.128c.722.752 1.084 1.629 1.084 2.757s-.361 2.005-1.084 2.757zm-4.576-.627c.482.501 1.204.877 1.927.877s1.445-.251 1.927-.877c.482-.501.843-1.253.843-2.131s-.241-1.629-.843-2.131C75.722 1.268 75 .892 74.277.892s-1.445.251-1.927.877c-.482.501-.843 1.253-.843 2.131s.241 1.629.843 2.131zm6.985 1.629V.141h1.084l3.492 5.891V.141h.963v7.52h-.963L80.176 1.52v6.142h-.843zm-9.034 11.032c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259c0 1.88-1.325 3.259-2.89 3.259zm-11.2-8.523c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259-1.204 3.259-2.77 3.259zm-13.367-6.894v2.256h5.178c-.12 1.039.272 1.626.542 1.626a4.08 4.08 0 0 0 1.47-.262l.188.85c-.511.231-1.116.336-1.825.336-1.709 0-2.72-1.08-2.72-2.769 0-1.678 1.032-2.948 2.585-2.948 1.386 0 2.272 1.039 2.272 2.612 0 .22-.01.409-.052.556zm-1.105-.871c0-.85-.427-1.448-1.198-1.448-.699 0-1.251.608-1.324 1.448h2.522z'/></g><g opacity='.2'><mask id='C' fill='#fff'><use xlink:href='#G'/></mask><use xlink:href='#G' fill='#fff'/><path d='M45.373 4.152c0 1.003-.241 1.88-.843 2.507a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 41.881.016c.482 0 .963.125 1.445.376s.843.501 1.084.877l-.602.627c-.482-.627-1.084-.877-1.927-.877-.723 0-1.445-.251-1.927.877-.602.501-.843 1.253-.843 2.131s.241 1.629.843 2.131 1.204.877 1.927.877c.843 0 1.445-.251 2.047-.877.361-.376.602-.877.602-1.504h-2.649V3.651h3.492v.501zm5.54-3.134h-3.252V3.4h3.011v.877h-3.011v2.381h3.252v1.003h-4.215V.141h4.215v.877zm3.974 6.643h-.963V1.019h-2.047V.141h5.058v.877h-2.047v6.643zm5.058 0h-.964V1.019h-2.047V.141h4.938v.877h-2.047v6.643h.121zm11.441-1.003a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 74.275.016a3.47 3.47 0 0 1 2.649 1.128c.722.752 1.084 1.629 1.084 2.757s-.361 2.005-1.084 2.757zm-4.576-.627c.482.501 1.204.877 1.927.877s1.445-.251 1.927-.877c.482-.501.843-1.253.843-2.131s-.241-1.629-.843-2.131C75.722 1.268 75 .892 74.277.892s-1.445.251-1.927.877c-.482.501-.843 1.253-.843 2.131s.241 1.629.843 2.131zm6.985 1.629V.141h1.084l3.492 5.891V.141h.963v7.52h-.963L80.176 1.52v6.142h-.843zm-9.034 11.032c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259c0 1.88-1.325 3.259-2.89 3.259zm-11.2-8.523c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259-1.204 3.259-2.77 3.259zm-13.367-6.894v2.256h5.178c-.12 1.039.272 1.626.542 1.626a4.08 4.08 0 0 0 1.47-.262l.188.85c-.511.231-1.116.336-1.825.336-1.709 0-2.72-1.08-2.72-2.769 0-1.678 1.032-2.948 2.585-2.948 1.386 0 2.272 1.039 2.272 2.612 0 .22-.01.409-.052.556zm-1.105-.871c0-.85-.427-1.448-1.198-1.448-.699 0-1.251.608-1.324 1.448h2.522z'/></g><defs ><path id='E' d='M45.373 4.152c0 1.003-.241 1.88-.843 2.507a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 41.881.016c.482 0 .963.125 1.445.376s.843.501 1.084.877l-.602.627c-.482-.627-1.084-.877-1.927-.877-.723 0-1.445-.251-1.927.877-.602.501-.843 1.253-.843 2.131s.241 1.629.843 2.131 1.204.877 1.927.877c.843 0 1.445-.251 2.047-.877.361-.376.602-.877.602-1.504h-2.649V3.651h3.492v.501zm5.54-3.134h-3.252V3.4h3.011v.877h-3.011v2.381h3.252v1.003h-4.215V.141h4.215v.877zm3.974 6.643h-.963V1.019h-2.047V.141h5.058v.877h-2.047v6.643zm5.058 0h-.964V1.019h-2.047V.141h4.938v.877h-2.047v6.643h.121zm11.441-1.003a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 74.275.016a3.47 3.47 0 0 1 2.649 1.128c.722.752 1.084 1.629 1.084 2.757s-.361 2.005-1.084 2.757zm-4.576-.627c.482.501 1.204.877 1.927.877s1.445-.251 1.927-.877c.482-.501.843-1.253.843-2.131s-.241-1.629-.843-2.131C75.722 1.268 75 .892 74.277.892s-1.445.251-1.927.877c-.482.501-.843 1.253-.843 2.131s.241 1.629.843 2.131zm6.985 1.629V.141h1.084l3.492 5.891V.141h.963v7.52h-.963L80.176 1.52v6.142h-.843zm-9.034 11.032c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259c0 1.88-1.325 3.259-2.89 3.259zm-11.2-8.523c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259-1.204 3.259-2.77 3.259zm-13.367-6.894v2.256h5.178c-.12 1.039.272 1.626.542 1.626a4.08 4.08 0 0 0 1.47-.262l.188.85c-.511.231-1.116.336-1.825.336-1.709 0-2.72-1.08-2.72-2.769 0-1.678 1.032-2.948 2.585-2.948 1.386 0 2.272 1.039 2.272 2.612 0 .22-.01.409-.052.556zm-1.105-.871c0-.85-.427-1.448-1.198-1.448-.699 0-1.251.608-1.324 1.448h2.522z'/><path id='F' d='M45.373 4.152c0 1.003-.241 1.88-.843 2.507a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 41.881.016c.482 0 .963.125 1.445.376s.843.501 1.084.877l-.602.627c-.482-.627-1.084-.877-1.927-.877-.723 0-1.445-.251-1.927.877-.602.501-.843 1.253-.843 2.131s.241 1.629.843 2.131 1.204.877 1.927.877c.843 0 1.445-.251 2.047-.877.361-.376.602-.877.602-1.504h-2.649V3.651h3.492v.501zm5.54-3.134h-3.252V3.4h3.011v.877h-3.011v2.381h3.252v1.003h-4.215V.141h4.215v.877zm3.974 6.643h-.963V1.019h-2.047V.141h5.058v.877h-2.047v6.643zm5.058 0h-.964V1.019h-2.047V.141h4.938v.877h-2.047v6.643h.121zm11.441-1.003a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 74.275.016a3.47 3.47 0 0 1 2.649 1.128c.722.752 1.084 1.629 1.084 2.757s-.361 2.005-1.084 2.757zm-4.576-.627c.482.501 1.204.877 1.927.877s1.445-.251 1.927-.877c.482-.501.843-1.253.843-2.131s-.241-1.629-.843-2.131C75.722 1.268 75 .892 74.277.892s-1.445.251-1.927.877c-.482.501-.843 1.253-.843 2.131s.241 1.629.843 2.131zm6.985 1.629V.141h1.084l3.492 5.891V.141h.963v7.52h-.963L80.176 1.52v6.142h-.843zm-9.034 11.032c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259c0 1.88-1.325 3.259-2.89 3.259zm-11.2-8.523c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259-1.204 3.259-2.77 3.259zm-13.367-6.894v2.256h5.178c-.12 1.039.272 1.626.542 1.626a4.08 4.08 0 0 0 1.47-.262l.188.85c-.511.231-1.116.336-1.825.336-1.709 0-2.72-1.08-2.72-2.769 0-1.678 1.032-2.948 2.585-2.948 1.386 0 2.272 1.039 2.272 2.612 0 .22-.01.409-.052.556zm-1.105-.871c0-.85-.427-1.448-1.198-1.448-.699 0-1.251.608-1.324 1.448h2.522z'/><path id='G' d='M45.373 4.152c0 1.003-.241 1.88-.843 2.507a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 41.881.016c.482 0 .963.125 1.445.376s.843.501 1.084.877l-.602.627c-.482-.627-1.084-.877-1.927-.877-.723 0-1.445-.251-1.927.877-.602.501-.843 1.253-.843 2.131s.241 1.629.843 2.131 1.204.877 1.927.877c.843 0 1.445-.251 2.047-.877.361-.376.602-.877.602-1.504h-2.649V3.651h3.492v.501zm5.54-3.134h-3.252V3.4h3.011v.877h-3.011v2.381h3.252v1.003h-4.215V.141h4.215v.877zm3.974 6.643h-.963V1.019h-2.047V.141h5.058v.877h-2.047v6.643zm5.058 0h-.964V1.019h-2.047V.141h4.938v.877h-2.047v6.643h.121zm11.441-1.003a3.47 3.47 0 0 1-2.649 1.128 3.47 3.47 0 0 1-2.649-1.128c-.723-.752-1.084-1.629-1.084-2.757s.361-2.005 1.084-2.757A3.47 3.47 0 0 1 74.275.016a3.47 3.47 0 0 1 2.649 1.128c.722.752 1.084 1.629 1.084 2.757s-.361 2.005-1.084 2.757zm-4.576-.627c.482.501 1.204.877 1.927.877s1.445-.251 1.927-.877c.482-.501.843-1.253.843-2.131s-.241-1.629-.843-2.131C75.722 1.268 75 .892 74.277.892s-1.445.251-1.927.877c-.482.501-.843 1.253-.843 2.131s.241 1.629.843 2.131zm6.985 1.629V.141h1.084l3.492 5.891V.141h.963v7.52h-.963L80.176 1.52v6.142h-.843zm-9.034 11.032c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259c0 1.88-1.325 3.259-2.89 3.259zm-11.2-8.523c-2.89 0-5.178 2.256-5.178 5.39 0 3.008 2.288 5.39 5.178 5.39s5.178-2.256 5.178-5.39c0-3.259-2.288-5.39-5.178-5.39zm0 8.523c-1.566 0-2.89-1.379-2.89-3.259s1.325-3.259 2.89-3.259 2.77 1.379 2.77 3.259-1.204 3.259-2.77 3.259zm-13.367-6.894v2.256h5.178c-.12 1.039.272 1.626.542 1.626a4.08 4.08 0 0 0 1.47-.262l.188.85c-.511.231-1.116.336-1.825.336-1.709 0-2.72-1.08-2.72-2.769 0-1.678 1.032-2.948 2.585-2.948 1.386 0 2.272 1.039 2.272 2.612 0 .22-.01.409-.052.556zm-1.105-.871c0-.85-.427-1.448-1.198-1.448-.699 0-1.251.608-1.324 1.448h2.522z'/></defs>
+</svg></a></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+   
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/simplebar/dist/simplebar.min.js' %}"></script>
+    <script src="{% static 'vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+    <script src="{% static 'vendor/leaflet/dist/leaflet.js' %}"></script>
+    <script src="{% static 'vendor/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js' %}"></script>
+    <script src="{% static 'vendor/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js' %}"></script>
+    <script src="{% static 'vendor/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js' %}"></script>
+    <script src="{% static 'vendor/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.min.js' %}"></script>
+    <script src="{% static 'vendor/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.min.js' %}"></script>
+    <script src="{% static 'vendor/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.min.js' %}"></script>
+    <script src="{% static 'vendor/filepond/dist/filepond.min.js' %}"></script>
+    <script src="{% static 'vendor/cleave.js/dist/cleave.min.js' %}"></script>
+    <!-- Main theme script-->
+    <script src="{% static 'js/theme.min.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+/* Custom Wishlist Button Styles */
+.wishlist-button.active {
+  background-color: #fff !important;
+}
+
+.wishlist-button.active i {
+  color: #dc3545 !important; /* Bootstrap's danger red color */
+}
+
+.wishlist-button:hover i {
+  color: #dc3545 !important;
+}
